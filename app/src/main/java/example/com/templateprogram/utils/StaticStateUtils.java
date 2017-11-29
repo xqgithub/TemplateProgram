@@ -1,6 +1,7 @@
 package example.com.templateprogram.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -65,4 +66,13 @@ public class StaticStateUtils {
         return false;
     }
 
+
+    /**
+     * Activity页面跳转
+     */
+    public static void intentToJump(Context context, Class<?> cls, int flag) {
+        Intent intent = new Intent(context, cls);
+        intent.setFlags(flag);
+        context.startActivity(intent);
+    }
 }

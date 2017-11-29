@@ -1,6 +1,7 @@
 package example.com.templateprogram.test.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -12,7 +13,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import example.com.templateprogram.R;
-import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.test.activity.TestAIDLActivity;
+import example.com.templateprogram.test.activity.TestCopy;
+import example.com.templateprogram.test.activity.TestMessengerActivity;
+import example.com.templateprogram.test.activity.Testone;
+import example.com.templateprogram.utils.StaticStateUtils;
 
 /**
  * Created by XQ on 2017/11/28.
@@ -60,13 +65,22 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        LogUtils.i("holder----->" + position);
+//        LogUtils.i("holder----->" + position);
         if (holder instanceof MyViewHolder) {
             ((MyViewHolder) holder).tv.setText(mDatas.get(position));
             ((MyViewHolder) holder).ll_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtils.i("position---->短点击" + position);
+//                    LogUtils.i("position---->短点击" + position);
+                    if (position == 0) {
+                        StaticStateUtils.intentToJump(mContext, Testone.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 1) {
+                        StaticStateUtils.intentToJump(mContext, TestCopy.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 2) {
+                        StaticStateUtils.intentToJump(mContext, TestMessengerActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 3) {
+                        StaticStateUtils.intentToJump(mContext, TestAIDLActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    }
                 }
             });
         }

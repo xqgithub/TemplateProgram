@@ -3,10 +3,8 @@ package example.com.templateprogram.test.activity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ import java.util.List;
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.adapter.MainRecyclerAdapter;
+import example.com.templateprogram.test.view.DividerItemDecoration1;
 
 /**
  * Created by XQ on 2017/11/28.
@@ -45,15 +44,15 @@ public class TestMainActivity extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);// 布局管理器
         rv_test_main.setLayoutManager(layoutManager);// 设置布局管理器
         layoutManager.setOrientation(OrientationHelper.VERTICAL);// 设置为垂直布局，这也是默认的
-//        rv_test_main.addItemDecoration(new DividerItemDecoration1(this,
-//                OrientationHelper.VERTICAL));// 设置分割线
+        rv_test_main.addItemDecoration(new DividerItemDecoration1(this,
+                OrientationHelper.VERTICAL));// 设置分割线
 //        rv_test_main.addItemDecoration(new SpaceItemDecoration(100));
         rv_test_main.setItemAnimator(new DefaultItemAnimator());// 设置增加或删除条目的动画
         rv_test_main.setAdapter(recyclerAdapter);// 设置适配器
 
 
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(rv_test_main);
+//        SnapHelper snapHelper = new LinearSnapHelper();//可以很方便的实现类似 ViewPager 的效果，比ViewPager 效果更好
+//        snapHelper.attachToRecyclerView(rv_test_main);
 
     }
 
