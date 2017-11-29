@@ -46,6 +46,7 @@ public class PhotoViewActivity extends BaseActivity {
 //                onBackPressed();
             }
 
+
         });
     }
 
