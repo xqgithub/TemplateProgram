@@ -26,14 +26,9 @@ import rx.schedulers.Schedulers;
  * Created by admin on 2017/6/20.
  */
 public class RetrofitServiceManager {
-
-    private final static Gson gson = new GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            .create();
-
     public static final boolean isDebug = true;
-    private static final int DEFAULT_CONNECT_TIME_OUT = 15; // 超时时间 5s
-    private static final int DEFAULT_READ_TIME_OUT = 15;
+    private static final int DEFAULT_CONNECT_TIME_OUT = 10; // 超时时间 5s
+    private static final int DEFAULT_READ_TIME_OUT = 10;
 
     private OkHttpClient.Builder httpClientBuilder;
 
@@ -63,7 +58,8 @@ public class RetrofitServiceManager {
      * @return
      */
     public static RetrofitServiceManager getInstance() {
-        return SingletonHolder.INSTANCE;
+//        return SingletonHolder.INSTANCE;
+        return new RetrofitServiceManager();
     }
 
     /**
@@ -72,6 +68,11 @@ public class RetrofitServiceManager {
      * @return
      */
     public ApiService getApiService() {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                .create();
+
+
         return new Retrofit.Builder()
                 .baseUrl(StaticStateUtils.usebath)
 //                .client(httpClientBuilder.build())

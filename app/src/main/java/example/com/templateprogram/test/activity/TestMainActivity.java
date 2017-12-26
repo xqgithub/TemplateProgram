@@ -86,7 +86,8 @@ public class TestMainActivity extends BaseActivity {
      * 测试数据
      */
     private List<String> mDatas;
-    private String[] tv1 = {"Testone", "TestCopy", "TestMessenger", "TestAIDL"};
+    private String[] tv1 = {"Testone", "TestCopy", "TestMessenger",
+            "TestAIDL", "TestJsonResolve"};
 
 
     public void initTestData() {

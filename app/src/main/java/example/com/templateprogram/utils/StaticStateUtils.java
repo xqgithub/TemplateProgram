@@ -16,7 +16,7 @@ import java.util.Locale;
  */
 public class StaticStateUtils {
 
-    public static String usebath = "";
+    public static String usebath = "http://192.168.123.178:8080/";
 
 
     /**
