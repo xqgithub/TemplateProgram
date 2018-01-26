@@ -87,7 +87,7 @@ public class TestMainActivity extends BaseActivity {
      */
     private List<String> mDatas;
     private String[] tv1 = {"Testone", "TestCopy", "TestMessenger",
-            "TestAIDL", "TestJsonResolve"};
+            "TestAIDL", "TestJsonResolve", "TestWebViewJS"};
 
 
     public void initTestData() {
