@@ -23,7 +23,7 @@ public class TestPicassoActivity extends BaseActivity implements View.OnClickLis
         iv_picasso = (ImageView) findViewById(R.id.iv_picasso);
         PicassoUtils.initPicasso(TestPicassoActivity.this);
 //        PicassoUtils.loadPicFromUrl(url, iv_picasso);
-        PicassoUtils.loadPicFromFile(url, iv_picasso);
+//        PicassoUtils.loadPicFromFile(url, iv_picasso);
     }
 
     @Override
@@ -35,6 +35,4 @@ public class TestPicassoActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
 
     }
-
-
 }

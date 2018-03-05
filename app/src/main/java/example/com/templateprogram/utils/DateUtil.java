@@ -35,6 +35,16 @@ public class DateUtil {
     }
 
     /**
+     * 返回当前时间字符串。 格式：yyyy-MM-dd
+     *
+     * @return String 指定格式的日期字符串.
+     */
+    public static String getCurrentDate1() {
+        return getFormatDateTime(new Date(), "yyyyMMdd");
+    }
+
+
+    /**
      * 返回当前指定的时间戳。格式为yyyy-MM-dd HH:mm
      *
      * @return 格式为yyyy-MM-dd HH:mm。
