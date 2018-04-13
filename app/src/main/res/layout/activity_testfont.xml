@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_testfont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_testfont1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/deimen_20x"
+        android:text="我是海贼王路飞大神"/>
+
+
+    <TextView
+        android:id="@+id/tv_testfont2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_testfont1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="我是天下第一的剑士"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_testfont2"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_testfont1"
+            android:layout_centerHorizontal="true"
+            android:text="我是天下第一个航海士"/>
+    </LinearLayout>
+
+</RelativeLayout>

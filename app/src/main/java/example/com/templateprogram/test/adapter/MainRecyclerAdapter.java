@@ -16,6 +16,7 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.test.activity.TestAIDLActivity;
 import example.com.templateprogram.test.activity.TestCopy;
 import example.com.templateprogram.test.activity.TestDeBuggerActivity;
+import example.com.templateprogram.test.activity.TestFontActivity;
 import example.com.templateprogram.test.activity.TestJsonResolve;
 import example.com.templateprogram.test.activity.TestMessengerActivity;
 import example.com.templateprogram.test.activity.TestPicassoActivity;
@@ -92,6 +93,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestPicassoActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 7) {
                         StaticStateUtils.intentToJump(mContext, TestDeBuggerActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 8) {
+                        StaticStateUtils.intentToJump(mContext, TestFontActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
