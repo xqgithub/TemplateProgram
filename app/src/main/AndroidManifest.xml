@@ -45,6 +45,9 @@
         <activity
             android:name=".test.activity.TestPicassoActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestDeBuggerActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
