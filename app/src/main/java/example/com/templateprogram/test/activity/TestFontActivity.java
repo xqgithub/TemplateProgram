@@ -33,7 +33,7 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
             super.handleMessage(msg);
             switch (msg.what) {
                 case changfonts:
-                    changeFonts(rl_testfont, TestFontActivity.this, "fonts/keaimengchong.ttf");
+                    changeFonts(rl_testfont, TestFontActivity.this, "fonts/Avenir.ttc");
                     break;
             }
         }
@@ -63,6 +63,7 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
 
     /**
      * 用递归的方式实现加载自定义字体
+     *
      * @param root
      * @param act
      * @param fontspath

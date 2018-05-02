@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_testfont1"
             android:layout_centerHorizontal="true"
-            android:text="我是天下第一个航海士"/>
+            android:text="Nice person"/>
     </LinearLayout>
 
 </RelativeLayout>
