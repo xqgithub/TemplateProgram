@@ -88,7 +88,8 @@ public class TestMainActivity extends BaseActivity {
     private List<String> mDatas;
     private String[] tv1 = {"Testone", "TestCopy", "TestMessenger",
             "TestAIDL", "TestJsonResolve", "TestWebViewJS",
-            "TestPicasso", "TestDeBugger", "TestFontActivity", "TestGlideActivity", "TestGirdRecyclerViewActivity"};
+            "TestPicasso", "TestDeBugger", "TestFontActivity",
+            "TestGlideActivity", "TestGirdRecyclerViewActivity", "TestGoogleBannerActivity"};
 
 
     public void initTestData() {

@@ -57,6 +57,9 @@
         <activity
             android:name=".test.activity.TestGirdRecyclerViewActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestGoogleBannerActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
