@@ -2,4 +2,6 @@
     <string name="app_name">TemplateProgram</string>
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="impossible_game">Impossible Game</string>
+    <string name="ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>

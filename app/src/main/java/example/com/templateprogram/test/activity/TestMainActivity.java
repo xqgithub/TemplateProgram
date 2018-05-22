@@ -89,7 +89,8 @@ public class TestMainActivity extends BaseActivity {
     private String[] tv1 = {"Testone", "TestCopy", "TestMessenger",
             "TestAIDL", "TestJsonResolve", "TestWebViewJS",
             "TestPicasso", "TestDeBugger", "TestFontActivity",
-            "TestGlideActivity", "TestGirdRecyclerViewActivity", "TestGoogleBannerActivity"};
+            "TestGlideActivity", "TestGirdRecyclerViewActivity", "TestGoogleBannerActivity",
+            "TestGoogleInterstitialActivity"};
 
 
     public void initTestData() {

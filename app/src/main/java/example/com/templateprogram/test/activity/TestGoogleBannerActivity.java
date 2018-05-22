@@ -14,6 +14,7 @@ import example.com.templateprogram.utils.LogUtils;
 
 /**
  * Created by XQ on 2018/5/21.
+ * 横幅广告
  */
 
 public class TestGoogleBannerActivity extends BaseActivity implements View.OnClickListener {

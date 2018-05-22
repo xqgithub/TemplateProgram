@@ -20,6 +20,7 @@ import example.com.templateprogram.test.activity.TestFontActivity;
 import example.com.templateprogram.test.activity.TestGirdRecyclerViewActivity;
 import example.com.templateprogram.test.activity.TestGlideActivity;
 import example.com.templateprogram.test.activity.TestGoogleBannerActivity;
+import example.com.templateprogram.test.activity.TestGoogleInterstitialActivity;
 import example.com.templateprogram.test.activity.TestJsonResolve;
 import example.com.templateprogram.test.activity.TestMessengerActivity;
 import example.com.templateprogram.test.activity.TestPicassoActivity;
@@ -104,6 +105,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestGirdRecyclerViewActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 11) {
                         StaticStateUtils.intentToJump(mContext, TestGoogleBannerActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 12) {
+                        StaticStateUtils.intentToJump(mContext, TestGoogleInterstitialActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
