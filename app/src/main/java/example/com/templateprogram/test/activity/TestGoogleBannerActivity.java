@@ -3,12 +3,14 @@ package example.com.templateprogram.test.activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
+import example.com.templateprogram.utils.LogUtils;
 
 /**
  * Created by XQ on 2018/5/21.
@@ -34,6 +36,58 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
                 .build();
         // 开始在后台加载广告。
         adView.loadAd(adRequest);
+
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                //代码在用户即将返回时执行
+                // 在点击广告后向应用发送信息。
+                LogUtils.i("----->onAdClosed");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                //代码在广告请求失败时执行。
+                LogUtils.i("----->onAdFailedToLoad");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+                //用户离开应用程序时要执行的代码。
+                LogUtils.i("----->onAdLeftApplication");
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+                //代码在广告打开覆盖层时执行
+                //覆盖屏幕。
+                LogUtils.i("----->onAdOpened");
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                //代码在广告加载完成时执行。
+                LogUtils.i("----->onAdLoaded");
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                LogUtils.i("----->onAdClicked");
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                LogUtils.i("----->onAdImpression");
+            }
+        });
 
     }
 
