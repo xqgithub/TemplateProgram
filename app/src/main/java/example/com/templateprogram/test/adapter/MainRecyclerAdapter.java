@@ -22,6 +22,7 @@ import example.com.templateprogram.test.activity.TestGlideActivity;
 import example.com.templateprogram.test.activity.TestGoogleBannerActivity;
 import example.com.templateprogram.test.activity.TestGoogleInterstitialActivity;
 import example.com.templateprogram.test.activity.TestGoogleNativeAdsAdvancedActivity;
+import example.com.templateprogram.test.activity.TestGoogleRewardedVideoActivity;
 import example.com.templateprogram.test.activity.TestJsonResolve;
 import example.com.templateprogram.test.activity.TestMessengerActivity;
 import example.com.templateprogram.test.activity.TestPicassoActivity;
@@ -110,6 +111,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestGoogleInterstitialActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 13) {
                         StaticStateUtils.intentToJump(mContext, TestGoogleNativeAdsAdvancedActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 14) {
+                        StaticStateUtils.intentToJump(mContext, TestGoogleRewardedVideoActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });

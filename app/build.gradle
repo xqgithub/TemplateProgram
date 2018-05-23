@@ -71,6 +71,8 @@ dependencies {
     //googleAD
     compile 'com.google.android.gms:play-services-ads:15.0.0'
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
 }
 
 
