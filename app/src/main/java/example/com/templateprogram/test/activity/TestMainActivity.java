@@ -90,7 +90,8 @@ public class TestMainActivity extends BaseActivity {
             "TestAIDL", "TestJsonResolve", "TestWebViewJS",
             "TestPicasso", "TestDeBugger", "TestFontActivity",
             "TestGlideActivity", "TestGirdRecyclerViewActivity", "TestGoogleBannerActivity",
-            "TestGoogleInterstitialActivity", "TestGoogleNativeAdsAdvancedActivity", "TestGoogleRewardedVideoActivity"};
+            "TestGoogleInterstitialActivity", "TestGoogleNativeAdsAdvancedActivity", "TestGoogleRewardedVideoActivity",
+            "TestCeilingActivity"};
 
 
     public void initTestData() {
