@@ -11,18 +11,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
+import example.com.templateprogram.test.view.SlipSwitch;
 
 /**
- * Created by admin on 2018/4/13.
+ * Created by XQ on 2018/4/13.
+ * 测试添加字体
+ * <p>
+ * 滑动按钮
  */
 
 public class TestFontActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_testfont1;
     private RelativeLayout rl_testfont;
+    private SlipSwitch slipswitch;
 
 
     private static final int changfonts = 1;
@@ -49,6 +55,23 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
         Message message = Message.obtain();
         message.what = changfonts;
         handler.sendMessage(message);
+
+        slipswitch = (SlipSwitch) findViewById(R.id.main_myslipswitch);
+        slipswitch.setImageResource(R.mipmap.slip_bg,
+                R.mipmap.slip_bg, R.mipmap.slip_onpress);
+        slipswitch.setOnSwitchListener(new SlipSwitch.OnSwitchListener() {
+            @Override
+            public void onSwitched(boolean isSwitchOn) {
+                if (isSwitchOn) {
+                    Toast.makeText(TestFontActivity.this, "开关已经开启",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TestFontActivity.this, "开关已经关闭",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     @Override

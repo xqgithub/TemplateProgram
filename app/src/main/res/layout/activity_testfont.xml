@@ -25,6 +25,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_testfont2"
@@ -39,5 +40,14 @@
             android:layout_centerHorizontal="true"
             android:text="Nice person"/>
     </LinearLayout>
+
+    <example.com.templateprogram.test.view.SlipSwitch
+        android:id="@+id/main_myslipswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/deimen_10x"/>
+
 
 </RelativeLayout>
