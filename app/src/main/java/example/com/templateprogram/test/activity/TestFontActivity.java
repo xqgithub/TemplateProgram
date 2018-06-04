@@ -16,6 +16,8 @@ import android.widget.Toast;
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.view.SlipSwitch;
+import example.com.templateprogram.test.view.SwitchButton;
+import example.com.templateprogram.utils.ToastUtils;
 
 /**
  * Created by XQ on 2018/4/13.
@@ -29,6 +31,8 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_testfont1;
     private RelativeLayout rl_testfont;
     private SlipSwitch slipswitch;
+
+    private SwitchButton switchButton;
 
 
     private static final int changfonts = 1;
@@ -57,8 +61,8 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
         handler.sendMessage(message);
 
         slipswitch = (SlipSwitch) findViewById(R.id.main_myslipswitch);
-        slipswitch.setImageResource(R.mipmap.slip_bg,
-                R.mipmap.slip_bg, R.mipmap.slip_onpress);
+        slipswitch.setImageResource(R.mipmap.bbbbbb,
+                R.mipmap.bbbbbb, R.mipmap.rrrrrr);
         slipswitch.setOnSwitchListener(new SlipSwitch.OnSwitchListener() {
             @Override
             public void onSwitched(boolean isSwitchOn) {
@@ -71,6 +75,10 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
                 }
             }
         });
+
+
+        switchButton = (SwitchButton) findViewById(R.id.switchbutton);
+        switchButton.setOnCheckChangedListener(new MyOnOpenedListener());
 
     }
 
@@ -107,4 +115,19 @@ public class TestFontActivity extends BaseActivity implements View.OnClickListen
             }
         }
     }
+
+
+    /**
+     * SwitchButton 的点击事件
+     *
+     * @author SvenHe
+     */
+    private class MyOnOpenedListener implements SwitchButton.OnOpenedListener {
+
+        @Override
+        public void onChecked(View v, boolean isOpened) {
+            ToastUtils.showLongToast(isOpened ? "我打开了" : "我关闭了");
+        }
+    }
+
 }
