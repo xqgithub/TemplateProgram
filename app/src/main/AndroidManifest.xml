@@ -9,7 +9,7 @@
 
     <application
         android:name=".base.MyApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/super_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -71,6 +71,9 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".test.activity.TestCeilingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestVideoViewActivity"
             android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
