@@ -4,8 +4,11 @@ import java.util.Map;
 
 import example.com.templateprogram.entity.ApiResponse;
 import example.com.templateprogram.entity.Member;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -16,4 +19,7 @@ public interface ApiService {
 
     @GET("/TemplateProgramWeb/testByAction")
     Observable<ApiResponse<Member>> testByAction(@QueryMap Map<String, String> options);
+
+    @GET
+    Call<ResponseBody> downloadFileWithDynamicUrlSync(@Url String fileUrl);
 }
