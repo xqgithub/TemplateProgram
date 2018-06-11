@@ -101,7 +101,7 @@ public class TestVideoViewActivity extends BaseActivity {
      */
     public boolean write2Data(ResponseBody body, String fileName, Context context) {
         File file = new File(dirpath);
-        if (file.exists()) {
+        if (!file.exists()) {
             file.mkdirs();
         }
         File futureStudioIconFile = new File(dirpath + File.separator + fileName);
