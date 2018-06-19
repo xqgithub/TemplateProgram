@@ -1,6 +1,7 @@
 package example.com.templateprogram.test.activity;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
@@ -10,7 +11,10 @@ import com.google.android.gms.ads.MobileAds;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
+import example.com.templateprogram.base.MyApp;
+import example.com.templateprogram.utils.DeviceUtils;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.StringUtils;
 
 /**
  * Created by XQ on 2018/5/21.
@@ -32,13 +36,22 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
         adView = (AdView) findViewById(R.id.ad_view);
         //创建一个广告请求,检查你的logcat输出的散列设备ID在物理设备上获取测试广告
         //例如：使用AdRequest.Builder.addTestDevice（”ABCDEF012345“）在该设备上获取测试广告
+        String androidid = Settings.Secure.getString(MyApp.getApplication().getContentResolver(), Settings.Secure.ANDROID_ID)
+                .toLowerCase();//统一使用小写，是否存在不同API获取的结果大小写不同的情况未知
+        if (StringUtils.isBlank(androidid)) {
+            androidid = "";
+        } else {
+            if ("9774d56d682e549c".equals(androidid)) {
+                androidid = "";
+            }
+        }
+//        LogUtils.i("deviceid----->" + DeviceUtils.getMd5(androidid).toUpperCase());
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
+                .addTestDevice(DeviceUtils.getMd5(androidid).toUpperCase()).build();
+//        AdRequest adRequest = new AdRequest.Builder().build();
         // 开始在后台加载广告。
         adView.loadAd(adRequest);
-
-
         adView.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -90,6 +103,8 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
             }
         });
 
+
+//        LogUtils.i("isTestDevice----->" + adRequest.isTestDevice(TestGoogleBannerActivity.this));
     }
 
     @Override
