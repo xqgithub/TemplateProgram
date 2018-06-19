@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name="example.com.templateprogram.activity.PhotoViewActivity"
-            android:screenOrientation="portrait"/>
+        <!--<activity-->
+            <!--android:name="example.com.templateprogram.activity.PhotoViewActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
         <activity
             android:name=".test.activity.Testone"
             android:screenOrientation="portrait"/>
