@@ -12,7 +12,6 @@ import com.google.android.gms.ads.MobileAds;
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.base.MyApp;
-import example.com.templateprogram.utils.DeviceUtils;
 import example.com.templateprogram.utils.LogUtils;
 import example.com.templateprogram.utils.StringUtils;
 
@@ -31,7 +30,9 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
         super.onCreate(savedInstanceState);
 
         // 初始化移动广告SDK。
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");//这是demo自带的
+//        MobileAds.initialize(this, "ca-app-pub-9145758407938760~1034332615");//这是自己设置的
+//        MobileAds.initialize(this, "ca-app-pub-6564422200233347~2881794514");//这是网上找的
         // 获取在layout / ad_fragment.xml中定义的广告视图，广告单元ID设置为values/strings.xml.
         adView = (AdView) findViewById(R.id.ad_view);
         //创建一个广告请求,检查你的logcat输出的散列设备ID在物理设备上获取测试广告
@@ -45,10 +46,10 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
                 androidid = "";
             }
         }
-//        LogUtils.i("deviceid----->" + DeviceUtils.getMd5(androidid).toUpperCase());
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(DeviceUtils.getMd5(androidid).toUpperCase()).build();
+//                .addTestDevice(DeviceUtils.getMd5(androidid).toUpperCase())
+                .addTestDevice("632123B75AEA4FFE09C02A978FFA20D8").build();
 //        AdRequest adRequest = new AdRequest.Builder().build();
         // 开始在后台加载广告。
         adView.loadAd(adRequest);
@@ -65,7 +66,7 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
                 //代码在广告请求失败时执行。
-                LogUtils.i("----->onAdFailedToLoad");
+                LogUtils.i("----->onAdFailedToLoad_____" + i);
             }
 
             @Override
@@ -104,7 +105,7 @@ public class TestGoogleBannerActivity extends BaseActivity implements View.OnCli
         });
 
 
-//        LogUtils.i("isTestDevice----->" + adRequest.isTestDevice(TestGoogleBannerActivity.this));
+        LogUtils.i("isTestDevice----->" + adRequest.isTestDevice(TestGoogleBannerActivity.this));
     }
 
     @Override

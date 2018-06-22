@@ -35,13 +35,13 @@ public class TestGoogleInterstitialActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //初始化Mobile Ads SDK。
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-//        MobileAds.initialize(this, "ca-app-pub-9145758407938760~1034332615");
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, "ca-app-pub-9145758407938760~1034332615");
         //创建InterstitialAd并设置adUnitId。
         interstitialAd = new InterstitialAd(this);
         // Defined in res/values/strings.xml
-        interstitialAd.setAdUnitId(getString(R.string.ad_unit_id));
-//        interstitialAd.setAdUnitId("ca-app-pub-9145758407938760/6273371330");
+//        interstitialAd.setAdUnitId(getString(R.string.ad_unit_id));
+        interstitialAd.setAdUnitId("ca-app-pub-9145758407938760/6273371330");
 
         interstitialAd.setAdListener(new AdListener() {
             @Override

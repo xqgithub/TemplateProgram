@@ -24,6 +24,10 @@ import example.com.templateprogram.base.BaseActivity;
 public class TestGoogleRewardedVideoActivity extends BaseActivity implements RewardedVideoAdListener {
     private static final String AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917";
     private static final String APP_ID = "ca-app-pub-3940256099942544~3347511713";
+
+//    private static final String AD_UNIT_ID = "ca-app-pub-9145758407938760/7590639665";
+//    private static final String APP_ID = "ca-app-pub-9145758407938760~1034332615";
+
     private static final long COUNTER_TIME = 10;
     private static final int GAME_OVER_REWARD = 1;
 
