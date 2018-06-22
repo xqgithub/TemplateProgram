@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.facebook.appevents.AppEventsLogger;
+
 import example.com.templateprogram.R;
 import example.com.templateprogram.test.activity.TestMainActivity;
 import example.com.templateprogram.utils.PermissionsChecker;
@@ -19,6 +21,9 @@ public class CheckPermissionsActivity extends Activity {
     private Activity mActivity;
 
     private static final int REQUEST_CODE = 0; // 请求码
+
+
+    private AppEventsLogger logger;
 
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
@@ -45,6 +50,9 @@ public class CheckPermissionsActivity extends Activity {
         }
         initView();
         initData();
+
+        logger = AppEventsLogger.newLogger(CheckPermissionsActivity.this);
+        logSentFriendRequestEvent();
     }
 
     /**
@@ -97,4 +105,14 @@ public class CheckPermissionsActivity extends Activity {
             finish();
         }
     }
+
+
+    /**
+     * This function assumes logger is an instance of AppEventsLogger and has been
+     * created using AppEventsLogger.newLogger() call.
+     */
+    public void logSentFriendRequestEvent() {
+        logger.logEvent("sentFriendRequest");
+    }
+
 }

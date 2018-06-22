@@ -79,6 +79,7 @@ public class StaticStateUtils {
 
     /**
      * 获取MD5值
+     *
      * @param string
      * @return
      */

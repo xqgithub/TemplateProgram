@@ -17,4 +17,8 @@
     <string name="watch_video_button_text">Watch Video for 10 additional coins</string>
     <string name="default_coin_text">Coins: 0</string>
 
+    <string name="facebook_app_id">424244591372282</string>
+    <string name="fb_login_protocol_scheme">fb424244591372282</string>
+
+
 </resources>

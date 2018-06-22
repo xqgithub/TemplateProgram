@@ -35,6 +35,9 @@ public class MyApp extends MultiDexApplication {
         // 加载全部异常捕获
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
+
+//        FacebookSdk.setIsDebugEnabled(true);
+//        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
     }
 
     /**
