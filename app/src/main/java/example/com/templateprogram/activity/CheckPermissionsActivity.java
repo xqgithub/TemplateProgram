@@ -1,6 +1,7 @@
 package example.com.templateprogram.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import com.facebook.appevents.AppEventsLogger;
 
 import example.com.templateprogram.R;
+import example.com.templateprogram.runtimepermissions.PermissionsManager;
+import example.com.templateprogram.runtimepermissions.PermissionsResultAction;
 import example.com.templateprogram.test.activity.TestMainActivity;
 import example.com.templateprogram.utils.PermissionsChecker;
 
@@ -28,8 +31,7 @@ public class CheckPermissionsActivity extends Activity {
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
     private PermissionsChecker mPermissionsChecker; // 权限检测器
@@ -113,6 +115,21 @@ public class CheckPermissionsActivity extends Activity {
      */
     public void logSentFriendRequestEvent() {
         logger.logEvent("sentFriendRequest");
+    }
+
+    @TargetApi(23)
+    private void requestPermissions() {
+        PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+//				Toast.makeText(MainActivity.this, "All permissions have been granted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                //Toast.makeText(MainActivity.this, "Permission " + permission + " has been denied", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
