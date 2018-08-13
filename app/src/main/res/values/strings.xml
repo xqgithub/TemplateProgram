@@ -21,4 +21,19 @@
     <string name="fb_login_protocol_scheme">fb424244591372282</string>
 
 
+    <string name="main_primary_title">Primary Channel</string>
+    <string name="main_primary_send1">Send 1</string>
+    <string name="main_primary_send2">Send 2</string>
+    <string name="main_primary_config">Go to primary settings</string>
+    <string name="main_secondary_title">Secondary Channel</string>
+    <string name="main_secondary_send1">Send 1</string>
+    <string name="main_secondary_send2">Send 2</string>
+    <string name="main_secondary_config">Go to secondary settings</string>
+    <string name="btn_config">Go to Settings</string>
+    <string name="primary1_body">The content</string>
+    <string name="primary2_body">Second Notification for Primary Channel</string>
+    <string name="secondary1_body">Notification body text.</string>
+    <string name="secondary2_body">Second Notification for Secondary Channel</string>
+
+
 </resources>

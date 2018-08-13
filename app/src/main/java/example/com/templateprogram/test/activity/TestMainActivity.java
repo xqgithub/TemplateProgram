@@ -92,7 +92,8 @@ public class TestMainActivity extends BaseActivity {
             "TestPicasso", "TestDeBugger", "TestFontActivity",
             "TestGlideActivity", "TestGirdRecyclerViewActivity", "TestGoogleBannerActivity",
             "TestGoogleInterstitialActivity", "TestGoogleNativeAdsAdvancedActivity", "TestGoogleRewardedVideoActivity",
-            "TestCeilingActivity", "TestVideoViewActivity", "TestGifActivity"
+            "TestCeilingActivity", "TestVideoViewActivity", "TestGifActivity",
+            "TestNotificationActivity"
     };
 
 

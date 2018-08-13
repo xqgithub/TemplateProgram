@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/main_primary_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/main_primary_title"
+        android:maxLines="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/main_primary_send1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/main_primary_send1"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/main_primary_send2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/main_primary_send2"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/main_primary_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/main_primary_config"
+        android:src="@drawable/ic_build_black_24dp"/>
+
+    <EditText
+        android:id="@+id/main_secondary_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="@string/main_secondary_title"
+        android:maxLines="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/main_secondary_send1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/main_secondary_send1"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/main_secondary_send2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/main_secondary_send2"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/main_secondary_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/main_secondary_config"
+        android:src="@drawable/ic_build_black_24dp"/>
+
+    <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/btn_config"
+        android:textStyle="bold"/>
+
+
+</LinearLayout>
