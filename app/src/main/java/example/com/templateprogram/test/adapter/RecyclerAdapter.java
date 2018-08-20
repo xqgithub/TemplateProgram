@@ -16,7 +16,7 @@ import example.com.templateprogram.utils.LogUtils;
 
 /**
  * @author RyanLee
- * @date 2017/12/7
+ * @date 2017/12/
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHolder> {
