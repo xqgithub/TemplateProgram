@@ -83,6 +83,8 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.28.0'
     //Recyclerview-Gallery 滑动放大缩小
     compile 'com.ryan.rv_gallery:rv-gallery:1.1.2'
+
+    compile project(path: ':indexlib')
 }
 
 

@@ -32,6 +32,7 @@ import example.com.templateprogram.test.activity.TestPicassoActivity;
 import example.com.templateprogram.test.activity.TestRecyclerviewGalleryActivity;
 import example.com.templateprogram.test.activity.TestVideoViewActivity;
 import example.com.templateprogram.test.activity.TestWebViewJSActivity;
+import example.com.templateprogram.test.activity.TestWeixinContactsActivity;
 import example.com.templateprogram.test.activity.Testone;
 import example.com.templateprogram.utils.StaticStateUtils;
 
@@ -128,6 +129,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestNotificationActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 19) {
                         StaticStateUtils.intentToJump(mContext, TestRecyclerviewGalleryActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 20) {
+                        StaticStateUtils.intentToJump(mContext, TestWeixinContactsActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
