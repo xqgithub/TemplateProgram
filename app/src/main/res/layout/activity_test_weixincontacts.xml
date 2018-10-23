@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+
+    <LinearLayout
+        android:id="@+id/ll_weixin_row1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_45x"
+        android:layout_marginLeft="@dimen/deimen_15x"
+        android:layout_marginRight="@dimen/deimen_15x"
+        android:background="@drawable/weixincontact_search_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/deimen_15x"
+        android:paddingRight="@dimen/deimen_15x">
+
+        <EditText
+            android:id="@+id/et_weixin_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="请输入要搜索的内容"
+            android:lines="1"
+            android:paddingLeft="@dimen/deimen_3x"
+            android:text=""
+            android:textColor="@color/appwhite"
+            android:textColorHint="#7a81b3"
+            android:textSize="@dimen/deimen_12x"/>
+    </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/ll_weixin_row1"
+        android:layout_marginTop="@dimen/deimen_10x"
         android:background="@android:color/white">
 
     </android.support.v7.widget.RecyclerView>
@@ -17,7 +49,9 @@
         android:id="@+id/indexBar"
         android:layout_width="@dimen/deimen_24x"
         android:layout_height="match_parent"
-        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ll_weixin_row1"
+        android:layout_marginTop="@dimen/deimen_10x"
         app:indexBarPressBackground="#39000000"
         app:indexBarTextSize="@dimen/deimen_16x"/>
 
@@ -25,7 +59,7 @@
         android:id="@+id/tvSideBarHint"
         android:layout_width="@dimen/deimen_80x"
         android:layout_height="@dimen/deimen_80x"
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:background="@drawable/transparent_bg_two"
         android:gravity="center"
         android:textColor="@android:color/white"
@@ -39,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:onClick="updateDatas"
-        android:text="更新数据源"/>
+        android:text="更新数据源"
+        android:visibility="gone"/>
 
-</FrameLayout>
+</RelativeLayout>

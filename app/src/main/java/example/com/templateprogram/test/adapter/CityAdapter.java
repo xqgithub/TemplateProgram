@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import example.com.templateprogram.R;
-import example.com.templateprogram.test.bean.CityBean;
+import example.com.templateprogram.test.bean.CountryCode;
 
 /**
  * Created by beijixiong on 2018/10/21.
@@ -21,20 +21,20 @@ import example.com.templateprogram.test.bean.CityBean;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
     protected Context mContext;
-    protected List<CityBean> mDatas;
+    protected List<CountryCode.DataBean> mDatas;
     protected LayoutInflater mInflater;
 
-    public CityAdapter(Context mContext, List<CityBean> mDatas) {
+    public CityAdapter(Context mContext, List<CountryCode.DataBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
         mInflater = LayoutInflater.from(mContext);
     }
 
-    public List<CityBean> getDatas() {
+    public List<CountryCode.DataBean> getDatas() {
         return mDatas;
     }
 
-    public CityAdapter setDatas(List<CityBean> datas) {
+    public CityAdapter setDatas(List<CountryCode.DataBean> datas) {
         mDatas = datas;
         return this;
     }
@@ -46,8 +46,8 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final CityAdapter.ViewHolder holder, final int position) {
-        final CityBean cityBean = mDatas.get(position);
-        holder.tvCity.setText(cityBean.getCity());
+        final CountryCode.DataBean dataBean = mDatas.get(position);
+        holder.tvCity.setText(dataBean.getZh());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +55,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
             }
         });
         holder.avatar.setImageResource(R.drawable.friend);
+        holder.tv_code.setText("+" + dataBean.getCode());
     }
 
     @Override
@@ -66,12 +67,14 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         TextView tvCity;
         ImageView avatar;
         View content;
+        public TextView tv_code;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvCity = (TextView) itemView.findViewById(R.id.tvCity);
-            avatar = (ImageView) itemView.findViewById(R.id.ivAvatar);
+            tvCity = itemView.findViewById(R.id.tvCity);
+            avatar = itemView.findViewById(R.id.ivAvatar);
             content = itemView.findViewById(R.id.content);
+            tv_code = itemView.findViewById(R.id.tv_code);
         }
     }
 
