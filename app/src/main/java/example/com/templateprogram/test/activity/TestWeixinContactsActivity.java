@@ -116,8 +116,7 @@ public class TestWeixinContactsActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                int number = s.length();
-                searchData(s);
+                searchData(s.toString().trim());
             }
         });
         //监听EditText是否获取到焦点
@@ -180,7 +179,7 @@ public class TestWeixinContactsActivity extends BaseActivity {
     /**
      * 搜索数据
      */
-    public void searchData(Editable content) {
+    public void searchData(String content) {
         mDatas.clear();
         //得到本地json文本内容
         String fileName = "country.json";
