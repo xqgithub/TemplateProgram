@@ -71,7 +71,7 @@ dependencies {
     //googleAD
     //noinspection GradleCompatible
     compile 'com.google.android.gms:play-services-ads:15.0.0'
-    compile 'com.google.firebase:firebase-core:15.0.0'//添加firebase
+    compile 'com.google.firebase:firebase-core:16.0.4'//添加firebase
     //加载gif
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
     //约束布局
