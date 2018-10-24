@@ -103,6 +103,9 @@
         <activity
             android:name=".test.activity.TestSlidingMenuActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestSlidingMenuActivity2"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
