@@ -6,7 +6,7 @@ import android.view.View;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
-import example.com.templateprogram.test.haha.SlidingDrawerLayout;
+import example.com.templateprogram.test.view.SlidingDrawerLayout;
 
 /**
  * Created by beijixiong on 2018/10/24.

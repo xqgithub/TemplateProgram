@@ -1,4 +1,4 @@
-package example.com.templateprogram.test.haha;
+package example.com.templateprogram.test.view;
 
 import android.content.Context;
 import android.util.ArrayMap;
