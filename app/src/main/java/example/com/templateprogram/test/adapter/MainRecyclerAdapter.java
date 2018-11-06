@@ -17,6 +17,7 @@ import example.com.templateprogram.test.activity.TestAIDLActivity;
 import example.com.templateprogram.test.activity.TestCeilingActivity;
 import example.com.templateprogram.test.activity.TestCopy;
 import example.com.templateprogram.test.activity.TestDeBuggerActivity;
+import example.com.templateprogram.test.activity.TestFlipActivity;
 import example.com.templateprogram.test.activity.TestFontActivity;
 import example.com.templateprogram.test.activity.TestGifActivity;
 import example.com.templateprogram.test.activity.TestGirdRecyclerViewActivity;
@@ -140,6 +141,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestSlidingMenuActivity2.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 23) {
                         StaticStateUtils.intentToJump(mContext, TestNavigationBarActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 24) {
+                        StaticStateUtils.intentToJump(mContext, TestFlipActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
