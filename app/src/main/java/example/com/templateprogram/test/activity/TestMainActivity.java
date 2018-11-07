@@ -95,7 +95,7 @@ public class TestMainActivity extends BaseActivity {
             "TestCeilingActivity", "TestVideoViewActivity", "TestGifActivity",
             "TestNotificationActivity", "TestRecyclerviewGalleryActivity", "TestWeixinContactsActivity",
             "TestSlidingMenuActivity", "TestSlidingMenuActivity2", "TestNavigationBarActivity",
-            "TestFlipActivity"
+            "TestFlipActivity", "TestAESCryptActivity"
     };
 
 

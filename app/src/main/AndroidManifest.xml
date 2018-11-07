@@ -112,6 +112,9 @@
         <activity
             android:name=".test.activity.TestFlipActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestAESCryptActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>

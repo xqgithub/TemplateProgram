@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import example.com.templateprogram.R;
+import example.com.templateprogram.test.activity.TestAESCryptActivity;
 import example.com.templateprogram.test.activity.TestAIDLActivity;
 import example.com.templateprogram.test.activity.TestCeilingActivity;
 import example.com.templateprogram.test.activity.TestCopy;
@@ -143,6 +144,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestNavigationBarActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 24) {
                         StaticStateUtils.intentToJump(mContext, TestFlipActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 25) {
+                        StaticStateUtils.intentToJump(mContext, TestAESCryptActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
