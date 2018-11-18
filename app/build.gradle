@@ -94,6 +94,8 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
 
+    //切换动画效果
+    compile 'com.wuyr:rippleanimation:1.0.0'
 }
 
 

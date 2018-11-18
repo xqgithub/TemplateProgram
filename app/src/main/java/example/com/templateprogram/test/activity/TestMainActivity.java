@@ -77,7 +77,7 @@ public class TestMainActivity extends BaseActivity {
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishLoadMore(2000);
+                refreshLayout.finishLoadMore();
             }
         });
     }
@@ -128,7 +128,8 @@ public class TestMainActivity extends BaseActivity {
             "TestCeilingActivity", "TestVideoViewActivity", "TestGifActivity",
             "TestNotificationActivity", "TestRecyclerviewGalleryActivity", "TestWeixinContactsActivity",
             "TestSlidingMenuActivity", "TestSlidingMenuActivity2", "TestNavigationBarActivity",
-            "TestFlipActivity", "TestAESCryptActivity", "TestBrokenGlassActivity"
+            "TestFlipActivity", "TestAESCryptActivity", "TestBrokenGlassActivity",
+            "TestRippleAnimationActivity"
     };
 
 
