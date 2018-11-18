@@ -57,7 +57,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         inflater = LayoutInflater.from(mContext);
     }
 
-
     /**
      * ViewHolder类
      */
@@ -71,6 +70,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
             ll_item = (LinearLayout) view.findViewById(R.id.ll_item);
 
         }
+    }
+
+    public void setData(List<String> mDatas) {
+        this.mDatas = mDatas;
     }
 
     @Override
