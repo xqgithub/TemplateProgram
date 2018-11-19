@@ -41,17 +41,21 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+
     //noinspection GradleCompatible
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:support-v4:26.1.0'
     compile 'com.android.support:design:26.1.0'
+
     //配置Multidex
     compile 'com.android.support:multidex:1.0.1'
+
     // Stetho
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
     compile 'com.squareup.okhttp3:okhttp:3.4.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.0'
+
     //RxJava+Retrofit+OkHttp
     compile 'com.orhanobut:logger:1.15'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -59,29 +63,44 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
     //picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+
     //图片处理
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
     //    compile files('libs/photoview-library-1.2.2.jar')
+
     //    compile 'com.github.chrisbanes:PhotoView:1.2.6'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
     //Glide
     compile 'com.github.bumptech.glide:glide:3.4.0'
+
     //googleAD
+
     //noinspection GradleCompatible
     compile 'com.google.android.gms:play-services-ads:15.0.0'
     compile 'com.google.firebase:firebase-core:16.0.4'
+
     //添加firebase
+
     //加载gif
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
+
     //约束布局
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
     //Facebook
+
     //    compile('com.facebook.android:facebook-android-sdk:[4,5)') {
+
     //        exclude(group: 'com.android.support', module: 'appcompat-v7:27.0.2')
+
     //    }
     compile 'com.facebook.android:facebook-android-sdk:4.28.0'
+
     //Recyclerview-Gallery 滑动放大缩小
     compile 'com.ryan.rv_gallery:rv-gallery:1.1.2'
     compile project(path: ':indexlib')
@@ -92,10 +111,13 @@ dependencies {
 
     //SmartRefreshLayout  刷新控件
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+
+    //没有使用特殊Header，可以不加这行
 
     //切换动画效果
     compile 'com.wuyr:rippleanimation:1.0.0'
+    implementation project(':viewspreadtranslationlibrary')
 }
 
 

@@ -1,1 +1,1 @@
-include ':app', ':indexlib', ':SlidingMenulibrary'
+include ':app', ':indexlib', ':SlidingMenulibrary', ':viewspreadtranslationlibrary'

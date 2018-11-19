@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_third"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_translation1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="#f60"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="点我"
+                android:textAllCaps="false"/>
+
+
+            <Button
+                android:id="@+id/btn_translation2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="点我"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_translation3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="@android:color/holo_purple"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="点我 我!"
+                android:textAllCaps="false"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="点击图片跳转"
+                    android:textColor="#000"
+                    android:textSize="16sp"/>
+
+                <ImageButton
+                    android:id="@+id/ib_customImage"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="click"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/beauty2"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_translation4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="@android:color/holo_orange_dark"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="我也可以跳!"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_translation5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_dark"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="还有我!"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_translation6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="@android:color/holo_red_light"
+                android:gravity="center"
+                android:onClick="click"
+                android:padding="20dp"
+                android:text="点点点!"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>
