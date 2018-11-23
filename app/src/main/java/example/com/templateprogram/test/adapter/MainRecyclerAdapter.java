@@ -15,6 +15,7 @@ import java.util.List;
 import example.com.templateprogram.R;
 import example.com.templateprogram.test.activity.TestAESCryptActivity;
 import example.com.templateprogram.test.activity.TestAIDLActivity;
+import example.com.templateprogram.test.activity.TestAnimationActivity;
 import example.com.templateprogram.test.activity.TestBrokenGlassActivity;
 import example.com.templateprogram.test.activity.TestCeilingActivity;
 import example.com.templateprogram.test.activity.TestCopy;
@@ -158,6 +159,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestRippleAnimationActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 28) {
                         StaticStateUtils.intentToJump(mContext, TestViewProliferationActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 29) {
+                        StaticStateUtils.intentToJump(mContext, TestAnimationActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
