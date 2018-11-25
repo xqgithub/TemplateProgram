@@ -1,6 +1,8 @@
 package example.com.templateprogram.test.activity;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -10,11 +12,13 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
+import example.com.templateprogram.test.view.Roll3DView;
 import example.com.templateprogram.test.view.Rotate3dAnimation;
 import example.com.templateprogram.test.view.RotateAnimation;
 import example.com.templateprogram.utils.LogUtils;
@@ -36,6 +40,15 @@ public class TestAnimationActivity extends BaseActivity {
     private ScaleAnimation sato1 = new ScaleAnimation(0, 1, 1, 1,
             Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, 0.5f);
 
+
+    //花式3D翻转
+    private Roll3DView tdView;
+    private Button btn_Pre;
+    private Button btn_next;
+
+
+    private BitmapDrawable bgDrawable1, bgDrawable2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +64,39 @@ public class TestAnimationActivity extends BaseActivity {
             }
         });
 
+        tdView = findViewById(R.id.three_d_view);
+        btn_Pre = findViewById(R.id.btn_Pre);
+        btn_next = findViewById(R.id.btn_next);
+
+        bgDrawable1 = (BitmapDrawable) getResources().getDrawable(R.mipmap.shouye1);
+        bgDrawable2 = (BitmapDrawable) getResources().getDrawable(R.drawable.beauty2);
+        Bitmap bitmap1 = bgDrawable1.getBitmap();
+        Bitmap bitmap2 = bgDrawable2.getBitmap();
+        tdView.addImageBitmap(bitmap1);
+
+        tdView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btn_Pre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tdView.toPre();
+            }
+        });
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tdView.toNext();
+            }
+        });
+        tdView.setRollDirection(2);
+        tdView.setPartNumber(3);
+        tdView.setRollMode(Roll3DView.RollMode.Whole3D);
+        tdView.setRotateDegree(90);
 
     }
 
