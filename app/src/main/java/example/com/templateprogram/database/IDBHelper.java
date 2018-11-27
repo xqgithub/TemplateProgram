@@ -1,5 +1,9 @@
 package example.com.templateprogram.database;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
+
 /**
  * Created by beijixiong on 2018/11/25.
  * greenDao
@@ -48,29 +52,25 @@ public interface IDBHelper {
      * 00004-1
      * 查询单条数据，根据主键的值
      */
-    <T> T selectByPrimaryKey(Class<? extends Object> classType, long key);
-//
-//    /**
-//     * 00004-2
-//     * 查询整表数据
-//     */
-//    List<M> loadAll();
-//
-//    /**
-//     * 00004-3
-//     * 自定义查询
-//     */
-//    QueryBuilder<M> getQueryBuilder();
-//
-//
-//    /**
-//     * 00004-4
-//     *
-//     * @param where
-//     * @param selectionArg
-//     * @return
-//     */
-//    List<M> queryRaw(String where, String... selectionArg);
+    <T> T selectByPrimaryKey(Class<T> classType, long key);
+
+    /**
+     * 00004-2
+     * 查询整表数据
+     */
+    <T> List<T> loadAll(Class<T> classType);
+
+    /**
+     * 00004-3
+     * 自定义查询
+     */
+    <T> List<T> getQueryRaw(Class<T> classType, String where, String... selectionArg);
+
+    /**
+     * 00004-4
+     * QueryBuilder 查询
+     */
+    <T> QueryBuilder<T> getQueryBuilder(Class<T> classType);
 //
 //
 //    /**

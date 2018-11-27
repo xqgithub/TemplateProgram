@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import example.com.templateprogram.R;
+import example.com.templateprogram.UserDao;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.database.DBHelper;
 import example.com.templateprogram.entity.User;
@@ -58,14 +62,14 @@ public class TestGreenDaoActivity extends BaseActivity {
                 }
 
                 break;
-//            case R.id.addlist:
-//                List<User> userList = new ArrayList<>();
-//                for (int i = 0; i < 10; i++) {
-//                    User mUser2 = new User(null, i, "路飞=-=" + i, "男");
-//                    userList.add(mUser2);
-//                }
-//                DBHelper.getInstance().getUserDao().insertInTx(userList);
-//                break;
+            case R.id.addlist:
+                List<User> userList = new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    User mUser2 = new User(null, i, "路飞=-=" + i, "男");
+                    userList.add(mUser2);
+                }
+                DBHelper.getInstance().insertOrReplace(userList);
+                break;
             case R.id.delete:
 
                 break;
@@ -88,13 +92,41 @@ public class TestGreenDaoActivity extends BaseActivity {
 //                }
 //                break;
             case R.id.select:
-                User user = DBHelper.getInstance().selectByPrimaryKey(User.class, 2l);
-                if (!StringUtils.isBlank(user)) {
-                    LogUtils.i(user.getPrimaryid());
-                    LogUtils.i(user.getId());
-                    LogUtils.i(user.getName());
-                    LogUtils.i(user.getSex());
+//                User user = DBHelper.getInstance().selectByPrimaryKey(User.class, 2l);
+//                if (!StringUtils.isBlank(user)) {
+//                    LogUtils.i(user.getPrimaryid());
+//                    LogUtils.i(user.getId());
+//                    LogUtils.i(user.getName());
+//                    LogUtils.i(user.getSex());
+//                }
+//                List<User> users = DBHelper.getInstance().loadAll(User.class);
+//                if (!StringUtils.isBlank(users) && users.size() > 0) {
+//                    for (User user : users) {
+//                        LogUtils.i(user.getPrimaryid());
+//                        LogUtils.i(user.getId());
+//                        LogUtils.i(user.getName());
+//                        LogUtils.i(user.getSex());
+//                    }
+//                }
+//                List<User> users = DBHelper.getInstance().getQueryRaw(User.class, "where USERNAME=?", new String[]{"路飞"});
+//                if (!StringUtils.isBlank(users) && users.size() > 0) {
+//                    for (User user : users) {
+//                        LogUtils.i(user.getPrimaryid());
+//                        LogUtils.i(user.getId());
+//                        LogUtils.i(user.getName());
+//                        LogUtils.i(user.getSex());
+//                    }
+//                }
+                List<User> users = DBHelper.getInstance().getQueryBuilder(User.class).where(UserDao.Properties.Name.like("%=-=%")).list();
+                if (!StringUtils.isBlank(users) && users.size() > 0) {
+                    for (User user : users) {
+                        LogUtils.i(user.getPrimaryid());
+                        LogUtils.i(user.getId());
+                        LogUtils.i(user.getName());
+                        LogUtils.i(user.getSex());
+                    }
                 }
+
                 break;
             default:
         }

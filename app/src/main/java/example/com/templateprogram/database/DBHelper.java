@@ -237,7 +237,22 @@ public class DBHelper implements IDBHelper {
     }
 
     @Override
-    public <T> T selectByPrimaryKey(Class<? extends Object> classType, long key) {
+    public <T> T selectByPrimaryKey(Class<T> classType, long key) {
         return ((AbstractDao<T, Object>) getDao(classType)).load(key);
+    }
+
+    @Override
+    public <T> List<T> loadAll(Class<T> classType) {
+        return ((AbstractDao<T, Object>) getDao(classType)).loadAll();
+    }
+
+    @Override
+    public <T> List<T> getQueryRaw(Class<T> classType, String where, String... selectionArg) {
+        return ((AbstractDao<T, Object>) getDao(classType)).queryRaw(where, selectionArg);
+    }
+
+    @Override
+    public <T> QueryBuilder<T> getQueryBuilder(Class<T> classType) {
+        return ((AbstractDao<T, Object>) getDao(classType)).queryBuilder();
     }
 }
