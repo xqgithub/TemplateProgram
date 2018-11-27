@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
-import example.com.templateprogram.utils.DensityUtils;
-
 /**
  * Created by admin on 2017/7/7.
  */
@@ -30,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 需要做什么操作可以写在该方法中
      */
     protected void onBeforeSetContentLayout() {
-        DensityUtils.setDefault(this);
+//        DensityUtils.setDefault(this);
     }
 
     /**

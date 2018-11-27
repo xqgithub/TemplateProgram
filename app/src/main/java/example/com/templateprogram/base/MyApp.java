@@ -5,8 +5,8 @@ import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 
+import example.com.templateprogram.database.DBHelper;
 import example.com.templateprogram.utils.CrashHandler;
-import example.com.templateprogram.utils.DensityUtils;
 import example.com.templateprogram.utils.LogUtils;
 import example.com.templateprogram.utils.Utils;
 
@@ -41,7 +41,10 @@ public class MyApp extends MultiDexApplication {
 //        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
 
 
-        DensityUtils.setDensity(mApp);
+//        DensityUtils.setDensity(mApp);
+
+        //初始化greenDao
+        DBHelper.getInstance().getDaoSession();
     }
 
     /**
