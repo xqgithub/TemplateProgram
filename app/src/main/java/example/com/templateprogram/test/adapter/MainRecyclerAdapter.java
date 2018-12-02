@@ -20,6 +20,7 @@ import example.com.templateprogram.test.activity.TestBrokenGlassActivity;
 import example.com.templateprogram.test.activity.TestCeilingActivity;
 import example.com.templateprogram.test.activity.TestCopy;
 import example.com.templateprogram.test.activity.TestDeBuggerActivity;
+import example.com.templateprogram.test.activity.TestEventBusActivityOne;
 import example.com.templateprogram.test.activity.TestFlipActivity;
 import example.com.templateprogram.test.activity.TestFontActivity;
 import example.com.templateprogram.test.activity.TestGifActivity;
@@ -164,6 +165,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestAnimationActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 30) {
                         StaticStateUtils.intentToJump(mContext, TestGreenDaoActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 31) {
+                        StaticStateUtils.intentToJump(mContext, TestEventBusActivityOne.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });

@@ -130,7 +130,7 @@ public class TestMainActivity extends BaseActivity {
             "TestSlidingMenuActivity", "TestSlidingMenuActivity2", "TestNavigationBarActivity",
             "TestFlipActivity", "TestAESCryptActivity", "TestBrokenGlassActivity",
             "TestRippleAnimationActivity", "TestViewProliferationActivity", "TestAnimationActivity",
-            "TestGreenDaoActivity"
+            "TestGreenDaoActivity", "TestEventBusActivityOne"
     };
 
 

@@ -130,6 +130,12 @@
         <activity
             android:name=".test.activity.TestGreenDaoActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestEventBusActivityOne"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestEventBusActivityTwo"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>

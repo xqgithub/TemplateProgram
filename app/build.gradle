@@ -132,6 +132,9 @@ dependencies {
 //    compile 'net.zetetic:android-database-sqlcipher:3.5.9@aar'//开启数据库加密，若要使用数据库加密，需要导入
 //compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0' //使用数据库安全升级辅助GreenDaoUpgradleHepler时添加
 
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
 
     implementation project(':SlidingMenulibrary')
     implementation project(':viewspreadtranslationlibrary')
