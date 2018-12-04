@@ -136,6 +136,9 @@
         <activity
             android:name=".test.activity.TestEventBusActivityTwo"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestBitmapCompress"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>

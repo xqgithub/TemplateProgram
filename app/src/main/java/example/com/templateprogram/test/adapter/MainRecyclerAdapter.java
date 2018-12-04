@@ -16,6 +16,7 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.test.activity.TestAESCryptActivity;
 import example.com.templateprogram.test.activity.TestAIDLActivity;
 import example.com.templateprogram.test.activity.TestAnimationActivity;
+import example.com.templateprogram.test.activity.TestBitmapCompress;
 import example.com.templateprogram.test.activity.TestBrokenGlassActivity;
 import example.com.templateprogram.test.activity.TestCeilingActivity;
 import example.com.templateprogram.test.activity.TestCopy;
@@ -167,6 +168,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestGreenDaoActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 31) {
                         StaticStateUtils.intentToJump(mContext, TestEventBusActivityOne.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 32) {
+                        StaticStateUtils.intentToJump(mContext, TestBitmapCompress.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
