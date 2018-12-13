@@ -32,6 +32,7 @@ import example.com.templateprogram.test.activity.TestGoogleInterstitialActivity;
 import example.com.templateprogram.test.activity.TestGoogleNativeAdsAdvancedActivity;
 import example.com.templateprogram.test.activity.TestGoogleRewardedVideoActivity;
 import example.com.templateprogram.test.activity.TestGreenDaoActivity;
+import example.com.templateprogram.test.activity.TestImageQRCodeActivity;
 import example.com.templateprogram.test.activity.TestJsonResolve;
 import example.com.templateprogram.test.activity.TestMessengerActivity;
 import example.com.templateprogram.test.activity.TestNavigationBarActivity;
@@ -170,6 +171,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestEventBusActivityOne.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 32) {
                         StaticStateUtils.intentToJump(mContext, TestBitmapCompress.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 33) {
+                        StaticStateUtils.intentToJump(mContext, TestImageQRCodeActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
