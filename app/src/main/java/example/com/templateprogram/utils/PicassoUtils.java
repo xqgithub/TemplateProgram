@@ -27,7 +27,7 @@ public class PicassoUtils {
     public static Picasso mpicasso;
 
     //开屏广告图片缓存路径
-    private static String dir = MyApp.getApplication().getFilesDir() + File.separator + "SAcceleratorOpenAd";
+    private static String dir = MyApp.getApplication().getExternalFilesDir(null) + File.separator + "TemplateProgram";
 
     /**
      * 初始化Picasso
@@ -98,5 +98,45 @@ public class PicassoUtils {
         });
     }
 
+    /**
+     * 异步加载网络图片
+     */
+    public static void fetchPic(String url) {
+        mpicasso.load(url)
+                .config(Bitmap.Config.RGB_565)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .error(R.mipmap.ic_launcher) //下载出错显示的图片
+                .fetch(new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        LogUtils.i("fetchPic----->图片加载成功");
+                    }
 
+                    @Override
+                    public void onError() {
+                        LogUtils.i("fetchPic----->图片加载失败");
+                    }
+                });
+    }
+
+    /**
+     * 加载本地资源文件
+     */
+    public static void loadResPic(int res, ImageView iv_picasso) {
+        mpicasso.load(res)
+                .config(Bitmap.Config.RGB_565)
+                .fit()
+                .into(iv_picasso, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        LogUtils.i("loadResPic----->图片加载成功");
+                    }
+
+                    @Override
+                    public void onError() {
+                        LogUtils.i("loadResPic----->图片加载失败");
+                    }
+                });
+    }
 }
