@@ -110,12 +110,14 @@ public class PicassoUtils {
                 .fetch(new Callback() {
                     @Override
                     public void onSuccess() {
+                        ToastUtils.showLongToastSafe("图片加载成功");
                         LogUtils.i("fetchPic----->图片加载成功");
                     }
 
                     @Override
                     public void onError() {
                         LogUtils.i("fetchPic----->图片加载失败");
+                        ToastUtils.showLongToastSafe("图片加载失败");
                     }
                 });
     }

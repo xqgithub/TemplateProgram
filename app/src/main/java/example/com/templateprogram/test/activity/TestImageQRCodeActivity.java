@@ -1,5 +1,6 @@
 package example.com.templateprogram.test.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Layout;
@@ -15,7 +17,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
@@ -23,13 +24,22 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Hashtable;
 
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
+import example.com.templateprogram.base.MyApp;
+import example.com.templateprogram.utils.FileUtils;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.PicassoUtils;
 
 /**
  * Created by beijixiong on 2018/12/12.
@@ -43,16 +53,16 @@ public class TestImageQRCodeActivity extends BaseActivity {
 
     private Activity mActivity;
     private ImageView iv;
-    private Button btn;
+    private String picurl = "https://upload-images.jianshu.io/upload_images/3134797-927971adae25267e.jpg";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = TestImageQRCodeActivity.this;
         iv = findViewById(R.id.iv);
-        btn = findViewById(R.id.btn);
         getViewTreeObserver(iv);
-
+        //加载网络图片
+        PicassoUtils.initPicasso(mActivity);
     }
 
     @Override
@@ -63,10 +73,18 @@ public class TestImageQRCodeActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn:
-//                iv.setImageBitmap(createImageQRCode("https://www.hao123.com/"));
 //                LogUtils.i("picWidth=-=" + picWidth);
 //                LogUtils.i("picHeight=-=" + picHeight);
-                iv.setImageBitmap(createImageText(mActivity, "我是小熊猫啦啦啦\r\n请扫码加我好友", "", R.drawable.beauty1));
+//                iv.setImageBitmap(createImageText(mActivity, "我是小熊猫啦啦啦\r\n请扫码加我好友", R.drawable.beauty1, null));
+                createImageTextFromPicCache(
+                        mActivity,
+                        "我是小熊猫啦啦啦\r\n请扫码加我好友",
+                        R.drawable.beauty1,
+                        picurl
+                );
+                break;
+            case R.id.btn2:
+                PicassoUtils.fetchPic(picurl);
                 break;
         }
     }
@@ -82,9 +100,12 @@ public class TestImageQRCodeActivity extends BaseActivity {
 
 
     public Bitmap createImageQRCode(Context context, String content, int QRCODE_SIZE) {
+        //配置参数
         Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
-        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         hints.put(EncodeHintType.CHARACTER_SET, CHARSET);
+        //容错级别
+        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+        //设置空白边距的宽度
         hints.put(EncodeHintType.MARGIN, 2);
         BitMatrix bitMatrix = null;
         Bitmap image = null;
@@ -111,6 +132,42 @@ public class TestImageQRCodeActivity extends BaseActivity {
     }
 
     /**
+     * 二维码图片中添加logo
+     */
+
+    public Bitmap addLogo(Bitmap bitmap_qrcode, Bitmap bitmap_logo) {
+        if (bitmap_qrcode == null) {
+            return null;
+        }
+        if (bitmap_logo == null) {
+            return null;
+        }
+        //获取图片的宽高
+        int bitmap_qrcode_Width = bitmap_qrcode.getWidth();
+        int bitmap_qrcode_Height = bitmap_qrcode.getHeight();
+        int bitmap_logo_Width = bitmap_logo.getWidth();
+        int bitmap_logo_Height = bitmap_logo.getHeight();
+        //logo大小为二维码整体大小的1/5
+        float scaleFactor = bitmap_qrcode_Width * 1.0f / 5 / bitmap_logo_Width;
+        Bitmap bitmap = Bitmap.createBitmap(bitmap_qrcode_Width, bitmap_qrcode_Height, Bitmap.Config.ARGB_8888);
+        try {
+            Canvas canvas = new Canvas(bitmap);
+            canvas.drawBitmap(bitmap_qrcode, 0, 0, null);
+            canvas.scale(scaleFactor, scaleFactor, bitmap_qrcode_Width / 2, bitmap_qrcode_Height / 2);
+            canvas.drawBitmap(bitmap_logo, (bitmap_qrcode_Width - bitmap_logo_Width) / 2,
+                    (bitmap_qrcode_Height - bitmap_logo_Height) / 2, null);
+            canvas.save(Canvas.ALL_SAVE_FLAG);
+            canvas.restore();
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtils.e(e.getMessage());
+            bitmap = null;
+        }
+        return bitmap;
+    }
+
+
+    /**
      * 生成图片，添加文字
      */
     private int picWidth = 0;//生成图片的宽度
@@ -118,30 +175,32 @@ public class TestImageQRCodeActivity extends BaseActivity {
 
     public Bitmap createImageText(Context context,
                                   String content,
-                                  String title,
-                                  int DrawableId) {
+                                  int DrawableId, Bitmap bitmap_bg) {
         int titleTextSize = context.getResources().getDimensionPixelSize(R.dimen.deimen_18x);
         int contentTextSize = context.getResources().getDimensionPixelSize(R.dimen.deimen_18x);
         int content_top_offset = context.getResources().getDimensionPixelSize(R.dimen.deimen_35x);
         int QRCODE_SIZE = context.getResources().getDimensionPixelSize(R.dimen.deimen_100x);// 二维码尺寸
+        int qrcode_x_offset = context.getResources().getDimensionPixelSize(R.dimen.deimen_30x);// 二维码尺寸
+        int qrcode_y_offset = context.getResources().getDimensionPixelSize(R.dimen.deimen_30x);// 二维码尺寸
 
-        int textColor = Color.BLACK;
+        int textColor = Color.RED;
         //最终生成的图片
         Bitmap result = Bitmap.createBitmap(picWidth, picHeight, Bitmap.Config.ARGB_8888);
-
         Paint paint = new Paint();
         paint.setColor(Color.BLUE);
         Canvas canvas = new Canvas(result);
-        //先画一整块白色矩形块
+        //先画一整块矩形块
         canvas.drawRect(0, 0, picWidth, picHeight, paint);
 
         /**
          * 绘制的底图
          */
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = false;
-        InputStream is = context.getResources().openRawResource(DrawableId);
-        Bitmap bitmap_bg = BitmapFactory.decodeStream(is, null, options);
+        if (bitmap_bg == null) {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = false;
+            InputStream is = context.getResources().openRawResource(DrawableId);
+            bitmap_bg = BitmapFactory.decodeStream(is, null, options);
+        }
         // 获得图片的宽高
         int bitmap_bg_width = bitmap_bg.getWidth();
         int bitmap_bg_height = bitmap_bg.getHeight();
@@ -191,7 +250,19 @@ public class TestImageQRCodeActivity extends BaseActivity {
         Bitmap bitmap_qrcode = createImageQRCode(context,
                 "https://www.youtube.com/",
                 QRCODE_SIZE);
-        canvas.drawBitmap(bitmap_qrcode, picWidth - QRCODE_SIZE - 100, picHeight - QRCODE_SIZE - 100, paint);
+        //二维码图片添加logo
+        BitmapFactory.Options options2 = new BitmapFactory.Options();
+        options2.inJustDecodeBounds = false;
+        @SuppressLint("ResourceType")
+        InputStream is2 = context.getResources().openRawResource(R.mipmap.jianguo_logo);
+        Bitmap bitmap_logo = BitmapFactory.decodeStream(is2, null, options2);
+        Bitmap bitmap_qrcode_logo = addLogo(bitmap_qrcode, bitmap_logo);
+        if (bitmap_qrcode_logo != null) {
+            canvas.drawBitmap(bitmap_qrcode_logo,
+                    picWidth - QRCODE_SIZE - qrcode_x_offset,
+                    picHeight - QRCODE_SIZE - qrcode_y_offset,
+                    paint);
+        }
         return result;
     }
 
@@ -209,4 +280,68 @@ public class TestImageQRCodeActivity extends BaseActivity {
             }
         });
     }
+
+    /**
+     * 获取本地图片缓存，再生成图片
+     */
+    public void createImageTextFromPicCache(final Context context,
+                                            final String content,
+                                            final int DrawableId,
+                                            String url) {
+        PicassoUtils.mpicasso.load(url)
+                .config(Bitmap.Config.RGB_565)
+                .networkPolicy(NetworkPolicy.OFFLINE)//加载图片的时候只从本地读取，除非网络正常且本地找不到资源的情况下
+                .error(R.mipmap.ic_launcher) //下载出错显示的图片
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        iv.setImageBitmap(createImageText(context, content, DrawableId, bitmap));
+                        saveBitMapToSDCard(createImageText(context, content, DrawableId, bitmap));
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                        iv.setImageBitmap(createImageText(context, content, DrawableId, null));
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                });
+    }
+
+    /**
+     * 将合成的图片保存在本地
+     */
+    private static String picdir = MyApp.getApplication().getExternalFilesDir(null) +
+            File.separator + "TemplateProgram" +
+            File.separator + "sharepictrue";
+
+    public void saveBitMapToSDCard(Bitmap bitmap) {
+        String picfile_path = picdir + File.separator + "haha.jpg";
+        FileOutputStream fos = null;
+        try {
+            if (FileUtils.createOrExistsFile(picfile_path)) {
+                fos = new FileOutputStream(picfile_path);
+                if (fos != null) {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtils.e(e.getMessage());
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    LogUtils.e(e.getMessage());
+                }
+            }
+        }
+    }
+
+
 }

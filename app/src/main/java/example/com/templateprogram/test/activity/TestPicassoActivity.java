@@ -23,9 +23,9 @@ public class TestPicassoActivity extends BaseActivity implements View.OnClickLis
         iv_picasso = (ImageView) findViewById(R.id.iv_picasso);
         PicassoUtils.initPicasso(TestPicassoActivity.this);
 //        PicassoUtils.loadPicFromUrl("https://upload-images.jianshu.io/upload_images/3134797-927971adae25267e.jpg", iv_picasso);
-//        PicassoUtils.loadPicFromFile(url, iv_picasso);
+//        PicassoUtils.loadPicFromFile("https://upload-images.jianshu.io/upload_images/3134797-927971adae25267e.jpg", iv_picasso);
 //        PicassoUtils.fetchPic("https://upload-images.jianshu.io/upload_images/3134797-927971adae25267e.jpg");
-        PicassoUtils.loadResPic(R.drawable.beauty1, iv_picasso);
+//        PicassoUtils.loadResPic(R.drawable.beauty1, iv_picasso);
     }
 
     @Override
