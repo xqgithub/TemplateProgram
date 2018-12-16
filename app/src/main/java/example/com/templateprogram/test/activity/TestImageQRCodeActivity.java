@@ -78,7 +78,7 @@ public class TestImageQRCodeActivity extends BaseActivity {
 //                iv.setImageBitmap(createImageText(mActivity, "我是小熊猫啦啦啦\r\n请扫码加我好友", R.drawable.beauty1, null));
                 createImageTextFromPicCache(
                         mActivity,
-                        "我是小熊猫啦啦啦\r\n请扫码加我好友",
+                        "我是小熊猫啦啦啦\n请扫码加我好友",
                         R.drawable.beauty1,
                         picurl
                 );
@@ -342,6 +342,4 @@ public class TestImageQRCodeActivity extends BaseActivity {
             }
         }
     }
-
-
 }
