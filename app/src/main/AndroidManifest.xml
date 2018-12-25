@@ -142,6 +142,9 @@
         <activity
             android:name=".test.activity.TestImageQRCodeActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestPingActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
@@ -151,6 +154,9 @@
         <service
             android:name=".test.service.TestMessengerService"
             android:process=":xixi"></service>
+        <service
+            android:name=".test.service.PingAidlService"
+            android:process=":gigi"></service>
 
 
         <!--Facebook -->
