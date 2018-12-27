@@ -2,7 +2,6 @@ package example.com.templateprogram.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 
 /**
@@ -29,9 +28,9 @@ public class PermissionsChecker {
 
     // 判断是否缺少权限
     private boolean lacksPermission(String permission) {
-        int flag = mContext.checkSelfPermission(permission);
-        int flag1 = PermissionChecker.checkSelfPermission(mContext, permission);
-        int flag2 = ActivityCompat.checkSelfPermission(mContext, permission);
+//        int flag = mContext.checkSelfPermission(permission);
+//        int flag1 = PermissionChecker.checkSelfPermission(mContext, permission);
+//        int flag2 = ActivityCompat.checkSelfPermission(mContext, permission);
         return PermissionChecker.checkSelfPermission(mContext, permission) ==
                 PackageManager.PERMISSION_DENIED;
     }

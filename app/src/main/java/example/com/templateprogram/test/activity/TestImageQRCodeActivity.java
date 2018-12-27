@@ -1,8 +1,10 @@
 package example.com.templateprogram.test.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,7 +12,9 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -35,11 +39,14 @@ import java.io.InputStream;
 import java.util.Hashtable;
 
 import example.com.templateprogram.R;
+import example.com.templateprogram.activity.PermissionsActivity;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.base.MyApp;
 import example.com.templateprogram.utils.FileUtils;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.PermissionsChecker;
 import example.com.templateprogram.utils.PicassoUtils;
+import example.com.templateprogram.utils.ToastUtils;
 
 /**
  * Created by beijixiong on 2018/12/12.
@@ -53,7 +60,8 @@ public class TestImageQRCodeActivity extends BaseActivity {
 
     private Activity mActivity;
     private ImageView iv;
-    private String picurl = "https://upload-images.jianshu.io/upload_images/3134797-927971adae25267e.jpg";
+    private String picurl = "http://d.5857.com/cy_170929/003.jpg";
+    private static final int REQUEST_CODE = 0; // 请求码
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,13 +83,21 @@ public class TestImageQRCodeActivity extends BaseActivity {
             case R.id.btn:
 //                LogUtils.i("picWidth=-=" + picWidth);
 //                LogUtils.i("picHeight=-=" + picHeight);
-//                iv.setImageBitmap(createImageText(mActivity, "我是小熊猫啦啦啦\r\n请扫码加我好友", R.drawable.beauty1, null));
-                createImageTextFromPicCache(
-                        mActivity,
-                        "我是小熊猫啦啦啦\n请扫码加我好友",
-                        R.drawable.beauty1,
-                        picurl
-                );
+
+                PermissionsChecker mPermissionsChecker = new PermissionsChecker(this);
+                if (mPermissionsChecker.lacksPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    PermissionsActivity.startActivityForResult(mActivity,
+                            REQUEST_CODE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                } else {
+//                    ToastUtils.showLongToastSafe("权限通过了，谢谢配合！");
+                    createImageTextFromPicCache(
+                            mActivity,
+                            "我是路飞，会成为海贼王的男人\n请扫码加我好友",
+                            R.drawable.beauty1,
+                            picurl
+                    );
+                }
                 break;
             case R.id.btn2:
                 PicassoUtils.fetchPic(picurl);
@@ -302,6 +318,7 @@ public class TestImageQRCodeActivity extends BaseActivity {
                     @Override
                     public void onBitmapFailed(Drawable errorDrawable) {
                         iv.setImageBitmap(createImageText(context, content, DrawableId, null));
+                        saveBitMapToSDCard(createImageText(context, content, DrawableId, null));
                     }
 
                     @Override
@@ -319,14 +336,21 @@ public class TestImageQRCodeActivity extends BaseActivity {
             File.separator + "sharepictrue";
 
     public void saveBitMapToSDCard(Bitmap bitmap) {
-        String picfile_path = picdir + File.separator + "haha.jpg";
+//        String picfile_path = picdir + File.separator + "haha.jpg";
+        String picfile_path = getSystemPhotoPath() + File.separator + "haha.jpg";
         FileOutputStream fos = null;
+        //图片是否保存成功标识
+        boolean saveflag = false;
         try {
             if (FileUtils.createOrExistsFile(picfile_path)) {
                 fos = new FileOutputStream(picfile_path);
                 if (fos != null) {
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                    saveflag = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 }
+                File pic_file = new File(picfile_path);
+                //保存图片后发送广播通知更新数据库
+                Uri uri = Uri.fromFile(pic_file);
+                mActivity.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -340,6 +364,29 @@ public class TestImageQRCodeActivity extends BaseActivity {
                     LogUtils.e(e.getMessage());
                 }
             }
+        }
+    }
+
+    /**
+     * 获取手机本地相册地址
+     */
+    private String getSystemPhotoPath() {
+        String pathSaveParent = "";
+        try {
+            pathSaveParent = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    .getAbsolutePath();
+        } catch (Exception e) {
+            LogUtils.e(e.getMessage());
+        }
+        return pathSaveParent;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
+            ToastUtils.showLongToastSafe("你为什么要拒绝我呢？fuck");
         }
     }
 }

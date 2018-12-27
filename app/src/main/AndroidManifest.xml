@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CheckPermissionsActivity">
+        <activity android:name=".test.activity.TestMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,9 +34,9 @@
             android:name=".activity.PermissionsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/myTransparent"/>
-        <activity
-            android:name=".test.activity.TestMainActivity"
-            android:screenOrientation="portrait"/>
+        <!--<activity-->
+            <!--android:name=".test.activity.TestMainActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
         <activity
             android:name=".test.activity.Testone"
             android:screenOrientation="portrait"/>
