@@ -56,25 +56,25 @@ public class LogUtils {
 
     private static final int FILE = 0xF1;
     private static final int JSON = 0xF2;
-    private static final int XML  = 0xF4;
+    private static final int XML = 0xF4;
 
     private static String dir;                      // log存储目录
-    private static boolean sLogSwitch       = true; // log总开关
-    private static String  sGlobalTag       = null; // log标签
-    private static boolean sTagIsSpace      = true; // log标签是否为空白
-    private static boolean sLog2FileSwitch  = false;// log写入文件开关
+    private static boolean sLogSwitch = true; // log总开关
+    private static String sGlobalTag = null; // log标签
+    private static boolean sTagIsSpace = true; // log标签是否为空白
+    private static boolean sLog2FileSwitch = false;// log写入文件开关
     private static boolean sLogBorderSwitch = true; // log边框开关
-    private static int     sLogFilter       = V;    // log过滤器
+    private static int sLogFilter = V;    // log过滤器
 
-    private static final String TOP_BORDER     = "╔═══════════════════════════════════════════════════════════════════════════════════════════════════";
-    private static final String LEFT_BORDER    = "║ ";
-    private static final String BOTTOM_BORDER  = "╚═══════════════════════════════════════════════════════════════════════════════════════════════════";
+    private static final String TOP_BORDER = "╔═══════════════════════════════════════════════════════════════════════════════════════════════════";
+    private static final String LEFT_BORDER = "║ ";
+    private static final String BOTTOM_BORDER = "╚═══════════════════════════════════════════════════════════════════════════════════════════════════";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    private static final int    MAX_LEN   = 4000;
+    private static final int MAX_LEN = 4000;
     private static final String NULL_TIPS = "Log with null object.";
-    private static final String NULL      = "null";
-    private static final String ARGS      = "args";
+    private static final String NULL = "null";
+    private static final String ARGS = "args";
 
     public static class Builder {
 
@@ -135,6 +135,10 @@ public class LogUtils {
     }
 
     public static void i(Object contents) {
+        log(I, sGlobalTag, contents);
+    }
+
+    public static void i(Object... contents) {
         log(I, sGlobalTag, contents);
     }
 
