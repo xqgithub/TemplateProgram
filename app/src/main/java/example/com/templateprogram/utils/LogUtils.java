@@ -138,10 +138,6 @@ public class LogUtils {
         log(I, sGlobalTag, contents);
     }
 
-    public static void i(Object... contents) {
-        log(I, sGlobalTag, contents);
-    }
-
     public static void i(String tag, Object... contents) {
         log(I, tag, contents);
     }
