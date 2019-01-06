@@ -4,6 +4,7 @@ import java.util.Map;
 
 import example.com.templateprogram.entity.ApiResponse;
 import example.com.templateprogram.entity.Member;
+import example.com.templateprogram.utils.apiencrypt.LocationResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,4 +23,10 @@ public interface ApiService {
 
     @GET
     Call<ResponseBody> downloadFileWithDynamicUrlSync(@Url String fileUrl);
+
+    /**
+     * 判断客户端是否是在国内
+     */
+    @GET
+    Observable<ApiResponse<LocationResponse>> location(@Url String fileUrl);
 }
