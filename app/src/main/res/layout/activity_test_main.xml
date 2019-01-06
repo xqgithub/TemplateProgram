@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/deimen_5x"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/deimen_2x"
+        android:background="@drawable/recyclerview_scrollbar_bg"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
@@ -12,6 +20,12 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_test_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:overScrollMode="never"
+            android:scrollbarThumbVertical="@drawable/recyclerview_scrollbar_columnstrip"
+            android:scrollbars="vertical"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</LinearLayout>
+
+
+</RelativeLayout>

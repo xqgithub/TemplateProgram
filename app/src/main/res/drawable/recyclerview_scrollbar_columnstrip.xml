@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:right="@dimen/deimen_2x">
+        <shape>
+            <solid android:color="#b3b3d9"/>
+            <corners android:radius="@dimen/deimen_3x"/>
+            <stroke
+                android:width="0dp"
+                android:color="#111111"/>
+            <size android:width="@dimen/deimen_5x"/>
+        </shape>
+    </item>
+</layer-list>

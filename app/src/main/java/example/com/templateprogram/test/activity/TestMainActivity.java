@@ -21,6 +21,7 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.adapter.MainRecyclerAdapter;
 import example.com.templateprogram.test.view.DividerItemDecoration1;
+import example.com.templateprogram.utils.LogUtils;
 
 /**
  * Created by XQ on 2017/11/28.
@@ -61,6 +62,9 @@ public class TestMainActivity extends BaseActivity {
     /**
      * 加载监听
      */
+    // 最后一个完全可见项的位置
+    private int findLastVisibleItemPosition;
+
     public void initListener() {
         //下拉刷新监听
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -78,6 +82,23 @@ public class TestMainActivity extends BaseActivity {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishLoadMore();
+            }
+        });
+
+        rv_test_main.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                if (layoutManager instanceof LinearLayoutManager) {
+                    findLastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+                }
+                LogUtils.i("findLastVisibleItemPosition =-= " + findLastVisibleItemPosition);
             }
         });
     }
