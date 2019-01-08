@@ -51,13 +51,15 @@ public class APIEncryptUtils {
                 p2 = random.nextInt(1000) + 1;
                 int p1x3 = (int) Math.pow(p1, 3);
                 int p2x3 = (int) Math.pow(p2, 3);
-                key = String.valueOf((p1x3 / p2x3 - p1 / 2));
+                int result = (int) (Math.floor(p1x3 / p2x3) - Math.floor(p1 / 2));
+                key = String.valueOf(result);
             } else if (keytype == 3) {//公式3，key=p1+p2+p3^2
                 p1 = random.nextInt(1000) + 1;
                 p2 = random.nextInt(1000) + 1;
                 p3 = random.nextInt(1000) + 1;
                 int p3x2 = (int) Math.pow(p3, 2);
-                key = String.valueOf(p1 + p2 + p3x2);
+                int result = p1 + p2 + p3x2;
+                key = String.valueOf(result);
             }
             map.put(Constants.keytype, keytype);
             map.put(Constants.p1, p1);
