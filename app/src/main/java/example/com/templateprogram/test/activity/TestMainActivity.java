@@ -21,7 +21,6 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.adapter.MainRecyclerAdapter;
 import example.com.templateprogram.test.view.DividerItemDecoration1;
-import example.com.templateprogram.utils.LogUtils;
 
 /**
  * Created by XQ on 2017/11/28.
@@ -98,7 +97,7 @@ public class TestMainActivity extends BaseActivity {
                 if (layoutManager instanceof LinearLayoutManager) {
                     findLastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                 }
-                LogUtils.i("findLastVisibleItemPosition =-= " + findLastVisibleItemPosition);
+//                LogUtils.i("findLastVisibleItemPosition =-= " + findLastVisibleItemPosition);
             }
         });
     }

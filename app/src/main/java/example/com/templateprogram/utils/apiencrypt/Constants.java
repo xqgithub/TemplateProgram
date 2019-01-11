@@ -7,7 +7,7 @@ package example.com.templateprogram.utils.apiencrypt;
 
 public interface Constants {
     //密钥公式类型
-    String keytype = "keytype";
+    String fi = "fi";
     //密钥
     String key = "key";
     //变量p1
@@ -18,5 +18,7 @@ public interface Constants {
     String p3 = "p3";
     //加密后的内容
     String encryptmessage = "encryptmessage";
-    String keydefaults = "86712786e2205b50e80721462334364d";
+    String keydefaults = "34dd818daca1310e997bde18";
+    //加密的uuid
+    String uuid = "uuid";
 }

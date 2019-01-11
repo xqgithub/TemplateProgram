@@ -169,11 +169,11 @@ public class AESCBCCrypt {
 
 
     private static void log(String what, byte[] bytes) {
-//        LogUtils.i(what + "[" + bytes.length + "] [" + bytesToHex(bytes) + "]");
+        LogUtils.i(what + "[" + bytes.length + "] [" + bytesToHex(bytes) + "]");
     }
 
     private static void log(String what, String value) {
-//        LogUtils.i(what + "[" + value.length() + "] [" + value + "]");
+        LogUtils.i(what + "[" + value.length() + "] [" + value + "]");
     }
 
 

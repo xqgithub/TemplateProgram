@@ -5,9 +5,13 @@ import java.util.Map;
 import example.com.templateprogram.entity.ApiResponse;
 import example.com.templateprogram.entity.Member;
 import example.com.templateprogram.utils.apiencrypt.LocationResponse;
+import example.com.templateprogram.utils.apiencrypt.SigninResponseV2;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
+import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -28,5 +32,22 @@ public interface ApiService {
      * 判断客户端是否是在国内
      */
     @GET
-    Observable<ApiResponse<LocationResponse>> location(@Url String fileUrl);
+    Observable<ApiResponse<LocationResponse>> location(
+            @Url String fileUrl,
+            @Header("fi") String fi,
+            @Header("p1") String p1,
+            @Header("p2") String p2,
+            @Header("p3") String p3,
+            @Header("uuid") String uuid);
+
+    /**
+     * 登录接口
+     */
+    @POST
+    Observable<ApiResponse<SigninResponseV2>> signinv4(
+            @Url String fileUrl,
+            @HeaderMap Map<String, String> headers
+    );
+
+
 }
