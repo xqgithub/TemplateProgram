@@ -62,10 +62,11 @@ public class TestVideoViewActivity extends BaseActivity {
      * 加载数据
      */
     public void initData() {
-//        uri = Uri.parse("android.resource://" + mActivity.getPackageName() + "/" + R.raw.test1);
-        String url = "http://192.168.123.178/test1.mp4";
+        uri = Uri.parse("android.resource://" + mActivity.getPackageName() + "/" + R.raw.test2);
+        cv_videoview.playVideo(uri);
+//        String url = "http://192.168.123.178/test1.mp4";
 //        FileUtils.deleteFilesInDir(dirpath);
-        palyVideo(url);
+//        palyVideo(url);
     }
 
     /**
