@@ -140,6 +140,11 @@ dependencies {
 
     //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
+    //轮播图控件
+    compile 'com.github.xqgithub:CustomBanner:1.1.20'
+
+
+
     implementation project(':SlidingMenulibrary')
     implementation project(':viewspreadtranslationlibrary')
 }

@@ -110,14 +110,12 @@ public class PicassoUtils {
                 .fetch(new Callback() {
                     @Override
                     public void onSuccess() {
-                        ToastUtils.showLongToastSafe("图片加载成功");
                         LogUtils.i("fetchPic----->图片加载成功");
                     }
 
                     @Override
                     public void onError() {
                         LogUtils.i("fetchPic----->图片加载失败");
-                        ToastUtils.showLongToastSafe("图片加载失败");
                     }
                 });
     }
@@ -141,4 +139,30 @@ public class PicassoUtils {
                     }
                 });
     }
+
+
+    /**
+     * 从网络上面下载图片文件
+     */
+    public static void loadBannerFromUrl(String url, ImageView iv_picasso) {
+        mpicasso.load(url)
+                .config(Bitmap.Config.RGB_565)
+//                .placeholder(R.mipmap.ic_launcher)  //设置占位图,下载图片时显示的
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .error(R.mipmap.ic_launcher) //下载出错显示的图片
+                .fit().into(iv_picasso, new Callback() {
+            @Override
+            public void onSuccess() {
+                LogUtils.i("loadBannerFromUrl----->图片加载成功");
+            }
+
+            @Override
+            public void onError() {
+                LogUtils.i("loadBannerFromUrl----->图片加载失败");
+            }
+        });
+    }
+
+
 }
