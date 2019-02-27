@@ -19,6 +19,8 @@ public class SPUtils {
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
+    private boolean encryptswitch = true;
+
 
     /**
      * SPUtils构造函数
@@ -40,6 +42,11 @@ public class SPUtils {
      */
     public void put(String key, @Nullable String value) {
         editor.putString(key, value).apply();
+        if (encryptswitch) {
+            encrypt(key, value);
+        } else {
+            editor.putString(key, value).apply();
+        }
     }
 
     /**
@@ -60,7 +67,11 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
     public String getString(String key, String defaultValue) {
-        return sp.getString(key, defaultValue);
+        if (encryptswitch && whetherEncryptData(key, defaultValue)) {
+            return (String) decrypt(key, defaultValue);
+        } else {
+            return sp.getString(key, defaultValue);
+        }
     }
 
     /**
@@ -70,7 +81,11 @@ public class SPUtils {
      * @param value 值
      */
     public void put(String key, int value) {
-        editor.putInt(key, value).apply();
+        if (encryptswitch) {
+            encrypt(key, value);
+        } else {
+            editor.putInt(key, value).apply();
+        }
     }
 
     /**
@@ -91,7 +106,11 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
     public int getInt(String key, int defaultValue) {
-        return sp.getInt(key, defaultValue);
+        if (encryptswitch && whetherEncryptData(key, defaultValue)) {
+            return (int) decrypt(key, defaultValue);
+        } else {
+            return sp.getInt(key, defaultValue);
+        }
     }
 
     /**
@@ -101,7 +120,11 @@ public class SPUtils {
      * @param value 值
      */
     public void put(String key, long value) {
-        editor.putLong(key, value).apply();
+        if (encryptswitch) {
+            encrypt(key, value);
+        } else {
+            editor.putLong(key, value).apply();
+        }
     }
 
     /**
@@ -122,7 +145,11 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
     public long getLong(String key, long defaultValue) {
-        return sp.getLong(key, defaultValue);
+        if (encryptswitch && whetherEncryptData(key, defaultValue)) {
+            return (long) decrypt(key, defaultValue);
+        } else {
+            return sp.getLong(key, defaultValue);
+        }
     }
 
     /**
@@ -132,7 +159,11 @@ public class SPUtils {
      * @param value 值
      */
     public void put(String key, float value) {
-        editor.putFloat(key, value).apply();
+        if (encryptswitch) {
+            encrypt(key, value);
+        } else {
+            editor.putFloat(key, value).apply();
+        }
     }
 
     /**
@@ -153,7 +184,11 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
     public float getFloat(String key, float defaultValue) {
-        return sp.getFloat(key, defaultValue);
+        if (encryptswitch && whetherEncryptData(key, defaultValue)) {
+            return (float) decrypt(key, defaultValue);
+        } else {
+            return sp.getFloat(key, defaultValue);
+        }
     }
 
     /**
@@ -163,7 +198,11 @@ public class SPUtils {
      * @param value 值
      */
     public void put(String key, boolean value) {
-        editor.putBoolean(key, value).apply();
+        if (encryptswitch) {
+            encrypt(key, value);
+        } else {
+            editor.putBoolean(key, value).apply();
+        }
     }
 
     /**
@@ -184,7 +223,13 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code defaultValue}
      */
     public boolean getBoolean(String key, boolean defaultValue) {
-        return sp.getBoolean(key, defaultValue);
+        if (encryptswitch && whetherEncryptData(key, defaultValue)) {
+            return (boolean) decrypt(key, defaultValue);
+        } else {
+            return sp.getBoolean(key, defaultValue);
+        }
+
+
     }
 
     /**
@@ -252,5 +297,64 @@ public class SPUtils {
     public void clear() {
 //        LogUtils.i("----->我正在清楚XML文件");
         editor.clear().commit();
+    }
+
+    /**
+     * 加密操作
+     */
+//    private String key_Integer = "=_=Integer";
+//    private String key_Long = "=_=Long";
+//    private String key_Boolean = "=_=Boolean";
+//    private String key_Float = "=_=Float";
+//    private String key_String = "=_=String";
+    private void encrypt(String key, Object values) {
+        String result = "";
+        try {
+            result = String.valueOf(values);
+            result = AESCrypt.encrypt(StaticStateUtils.key, result);
+            editor.putString(key, result).apply();
+        } catch (Exception e) {
+            LogUtils.e(e.getMessage());
+        }
+    }
+
+    /**
+     * 解密操作
+     */
+    private Object decrypt(String key, Object defaultValue) {
+        Object result = null;
+        try {
+            String encryptvalues = sp.getString(key, String.valueOf(defaultValue));
+            if (defaultValue instanceof Integer) {
+                result = Integer.parseInt(AESCrypt.decrypt(StaticStateUtils.key, encryptvalues));
+            } else if (defaultValue instanceof Long) {
+                result = Long.parseLong(AESCrypt.decrypt(StaticStateUtils.key, encryptvalues));
+            } else if (defaultValue instanceof Boolean) {
+                result = Boolean.parseBoolean(AESCrypt.decrypt(StaticStateUtils.key, encryptvalues));
+            } else if (defaultValue instanceof Float) {
+                result = Float.parseFloat(AESCrypt.decrypt(StaticStateUtils.key, encryptvalues));
+            } else if (defaultValue instanceof String) {
+                result = AESCrypt.decrypt(StaticStateUtils.key, encryptvalues);
+            }
+        } catch (Exception e) {
+            LogUtils.e(e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * 判断数据是否是已经加密过的数据
+     */
+    private boolean whetherEncryptData(String key, Object defaultValue) {
+        boolean is_encrypt_data = false;
+        try {
+            String encryptvalues = sp.getString(key, String.valueOf(defaultValue));
+            if (encryptvalues.endsWith("=") || encryptvalues.endsWith("==")) {
+                is_encrypt_data = true;
+            }
+        } catch (Exception e) {
+            LogUtils.e(e.getMessage());
+        }
+        return is_encrypt_data;
     }
 }

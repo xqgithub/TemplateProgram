@@ -44,6 +44,7 @@ import example.com.templateprogram.test.activity.TestPicassoActivity;
 import example.com.templateprogram.test.activity.TestPingActivity;
 import example.com.templateprogram.test.activity.TestRecyclerviewGalleryActivity;
 import example.com.templateprogram.test.activity.TestRippleAnimationActivity;
+import example.com.templateprogram.test.activity.TestSPEncryptDecryptActivity;
 import example.com.templateprogram.test.activity.TestSlidingMenuActivity;
 import example.com.templateprogram.test.activity.TestSlidingMenuActivity2;
 import example.com.templateprogram.test.activity.TestVideoViewActivity;
@@ -185,6 +186,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestAPIEncryptActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 37) {
                         StaticStateUtils.intentToJump(mContext, TestLoopBannerActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 38) {
+                        StaticStateUtils.intentToJump(mContext, TestSPEncryptDecryptActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });

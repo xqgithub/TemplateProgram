@@ -19,6 +19,8 @@ public class StaticStateUtils {
 
     public static String usebath = "http://192.168.123.178:8080/";
 
+    //加密，解密秘钥
+    public static String key = "86712786e2205b50e80721462334364d";
 
     /**
      * 获取开发工具的SHA1
