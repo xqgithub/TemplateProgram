@@ -169,8 +169,10 @@
         <service
             android:name=".test.service.PingAidlService"
             android:process=":gigi"></service>
-
-
+        <!--Gilde 缓存配置 -->
+        <meta-data
+            android:name="example.com.templateprogram.utils.glide.MyGlideMoudle"
+            android:value="GlideModule"/>
         <!--Facebook -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

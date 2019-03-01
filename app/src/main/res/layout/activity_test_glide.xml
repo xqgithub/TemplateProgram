@@ -8,8 +8,15 @@
         android:id="@+id/btn_glide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/deimen_10x"
+        android:layout_toRightOf="@+id/btn_cache_address"
         android:text="加载图片"/>
+
+    <Button
+        android:id="@+id/btn_cache_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="图片缓存位置"/>
 
     <ImageView
         android:id="@+id/iv_glide"
@@ -18,5 +25,6 @@
         android:layout_below="@+id/btn_glide"
         android:layout_centerHorizontal="true"
         android:scaleType="center"/>
+
 
 </RelativeLayout>
