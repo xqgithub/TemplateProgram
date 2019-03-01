@@ -57,11 +57,12 @@ public class PicassoUtils {
      * 从网络上面下载图片文件
      */
     public static void loadPicFromUrl(String url, ImageView iv_picasso) {
+        mpicasso.setIndicatorsEnabled(true);
         mpicasso.load(url)
                 .config(Bitmap.Config.RGB_565)
 //                .placeholder(R.mipmap.ic_launcher)  //设置占位图,下载图片时显示的
-                .networkPolicy(NetworkPolicy.NO_CACHE)
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .networkPolicy(NetworkPolicy.NO_CACHE)
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .error(R.mipmap.ic_launcher) //下载出错显示的图片
                 .fit().into(iv_picasso, new Callback() {
             @Override
@@ -163,6 +164,4 @@ public class PicassoUtils {
             }
         });
     }
-
-
 }
