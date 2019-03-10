@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.view.MarqueeTextView;
+import example.com.templateprogram.test.view.MarqueeTextView2;
 import example.com.templateprogram.utils.LogUtils;
 import example.com.templateprogram.utils.StringUtils;
 
@@ -30,18 +31,22 @@ import example.com.templateprogram.utils.StringUtils;
 
 public class TestMarqueeTextViewActivity extends BaseActivity {
 
-    private List<String> list = new ArrayList<>();
-
     private MarqueeTextView mv;
+    private MarqueeTextView2 mv2;
+    private MarqueeTextView2 mv3;
 
-    String content1 = "我是&海贼王&路飞，我要成为%海贼王%的男人，请祝福我吧，&哈哈&";
+    String content1 = "我是&海贼王&路飞，abc要成为%海贼王%的男人，请%祝福%我吧，&哈哈&";
     String content2 = "%露西按%吃&粑粑&吃的真是欢乐，你个狗的继续吃粑粑啊，哈哈";
-    String content3 = "露西按吃%粑粑吃的真是欢乐，你个&狗&的继续吃粑粑%啊，哈哈";
+    String content3 = "%露西按%";
+    String content4 = "官方最新地址:https://ta3.app，旧地址已被封 &查看详情&";
+    private List<String> list = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mv = findViewById(R.id.mv);
+        mv2 = findViewById(R.id.mv2);
+        mv3 = findViewById(R.id.mv3);
 
         initData();
     }
@@ -52,8 +57,6 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
     }
 
     public void startScroll(View view) {
-//        LogUtils.i("numberCharacters =-= " + appearNumber(content1, charactermatch1));
-        wordProcess(mv, content1);
     }
 
     public void pauseScroll(View view) {
@@ -65,7 +68,14 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
     }
 
     public void initData() {
-        mv.setText(content1);
+        mv.setMarqueeEnable(true);
+        wordProcess(mv, content1);
+//        mv.setText(content1);
+
+//        mv2.setText(content1);
+//        mv2.setRndDuration(20000);
+//        mv2.startScroll();
+
     }
 
     /**

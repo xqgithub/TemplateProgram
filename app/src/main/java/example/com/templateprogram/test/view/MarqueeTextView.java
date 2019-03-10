@@ -1,9 +1,12 @@
 package example.com.templateprogram.test.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v7.widget.AppCompatTextView;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 
 /**
@@ -11,53 +14,57 @@ import android.util.AttributeSet;
  * 跑马灯
  */
 
-public class MarqueeTextView extends AppCompatTextView {
+@SuppressLint("AppCompatCustomView")
+public class MarqueeTextView extends TextView {
+
+    private boolean isMarqueeEnable = false;
 
     public MarqueeTextView(Context context) {
         super(context);
     }
 
-    public MarqueeTextView(Context context, AttributeSet attrs) {
+    public MarqueeTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MarqueeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MarqueeTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    /**
-     * 这个属性这个View得到焦点,在这里我们设置为true,这个View就永远是有焦点的
-     *
-     * @return
-     */
-    @Override
-    public boolean isFocused() {
-        return true;
-    }
-
-    /**
-     * 用于EditText抢注焦点的问题
-     *
-     * @param focused
-     * @param direction
-     * @param previouslyFocusedRect
-     */
-    @Override
-    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        if (focused) {
-            super.onFocusChanged(focused, direction, previouslyFocusedRect);
+    public void setMarqueeEnable(boolean enable) {
+        if (isMarqueeEnable != enable) {
+            isMarqueeEnable = enable;
+            if (enable) {
+                setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            } else {
+                setEllipsize(TextUtils.TruncateAt.END);
+            }
+            onWindowFocusChanged(enable);
         }
     }
 
-    /**
-     * Window与Window间焦点发生改变时的回调
-     *
-     * @param hasWindowFocus
-     */
+    public boolean isMarqueeEnable() {
+        return isMarqueeEnable;
+    }
+
+    @Override
+    public boolean isFocused() {
+        return isMarqueeEnable;
+    }
+
+    @Override
+    public boolean isSelected() {
+        return isMarqueeEnable;
+    }
+
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        super.onFocusChanged(isMarqueeEnable, direction, previouslyFocusedRect);
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
-        if (hasWindowFocus)
-            super.onWindowFocusChanged(hasWindowFocus);
+        super.onWindowFocusChanged(isMarqueeEnable);
     }
 
 }

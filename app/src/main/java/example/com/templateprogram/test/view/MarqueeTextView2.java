@@ -9,6 +9,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import example.com.templateprogram.utils.LogUtils;
+
 /**
  * Created by beijixiong on 2019/3/5.
  * 自定义TextView 实现跑马灯效果
@@ -18,9 +20,12 @@ import android.widget.TextView;
 @SuppressLint("AppCompatCustomView")
 public class MarqueeTextView2 extends TextView {
 
+    /**
+     * 第一个滚动
+     */
     private Scroller mSlr;
     // 滚动的速度
-    private int mRndDuration = 5000;
+    private int mRndDuration = 1000;
     //暂停的时候X轴的位移
     private int mXPaused = 0;
     //暂停标识
@@ -122,12 +127,24 @@ public class MarqueeTextView2 extends TextView {
     @Override
     public void computeScroll() {
         super.computeScroll();
-
         if (null == mSlr) return;
-
         if (mSlr.isFinished() && (!mPaused)) {
             this.startScroll();
         }
+
+        int mslr_startx = mSlr.getStartX();
+        int mslr_currx = mSlr.getCurrX();
+        int mslr_finalx = mSlr.getFinalX();
+//        int aa = mSlr2.getStartX();
+//        int bb = mSlr2.getCurrX();
+//        int cc = mSlr2.getFinalX();
+        LogUtils.i("computeScroll",
+                "mslr_startx----->" + mslr_startx,
+                "mslr_currx----->" + mslr_currx,
+                "mslr_finalx----->" + mslr_finalx);
+//                "StartX--aa--->" + aa,
+//                "CurrX--bb--->" + bb,
+//                "FinalX--cc--->" + cc);
     }
 
     public int getRndDuration() {
@@ -141,4 +158,6 @@ public class MarqueeTextView2 extends TextView {
     public boolean isPaused() {
         return mPaused;
     }
+
+
 }

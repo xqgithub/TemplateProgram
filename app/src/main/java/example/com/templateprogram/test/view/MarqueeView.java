@@ -10,6 +10,7 @@ import android.support.v7.widget.TintTypedArray;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
@@ -163,7 +164,7 @@ public class MarqueeView extends View implements Runnable {
                 if (xLocation < 0) {
                     int beAppend = (int) ((-xLocation) / contentWidth);
 
-//                    Log.e(TAG, "onDraw: ---" + contentWidth + "--------" + (-xLocation) + "------" + beAppend);
+                    Log.e(TAG, "onDraw: ---" + contentWidth + "--------" + (-xLocation) + "------" + beAppend);
 
                     if (beAppend >= repetCount) {
                         repetCount++;
@@ -189,6 +190,7 @@ public class MarqueeView extends View implements Runnable {
         //把文字画出来
         if (string != null) {
             canvas.drawText(string, xLocation, getHeight() / 2 + textHeight / 2, paint);
+
         }
 
     }
@@ -457,18 +459,4 @@ public class MarqueeView extends View implements Runnable {
     public void appendContent(String appendContent) {
 //有兴趣的朋友可以自己完善，在现有的基础之上，静默追加新的 公告
     }
-
-    private TextPaint paint2;//画笔
-
-    private void initpaint2() {
-
-        rect = new Rect();
-        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);//初始化文本画笔
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(textColor);//文字颜色值,可以不设定
-        paint.setTextSize(dp2px(textSize));//文字大小
-
-    }
-
-
 }

@@ -36,26 +36,47 @@
     <example.com.templateprogram.test.view.MarqueeTextView
         android:id="@+id/mv"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/deimen_50x"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btn2"
         android:layout_marginTop="@dimen/deimen_15x"
         android:background="@color/crowded_yellow"
         android:ellipsize="marquee"
         android:focusable="true"
-        android:focusableInTouchMode="true"
         android:gravity="center"
-        android:marqueeRepeatLimit="marquee_forever"
+        android:marqueeRepeatLimit="-1"
         android:singleLine="true"
         android:text=""
-        android:textSize="@dimen/deimen_16x"/>
+        android:textSize="@dimen/deimen_14x"
+        android:visibility="visible"/>
+
+    <example.com.templateprogram.test.view.MarqueeTextView2
+        android:id="@+id/mv2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_50x"
+        android:layout_below="@+id/btn2"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text=""
+        android:textSize="@dimen/deimen_14x"
+        android:visibility="gone"/>
+
+    <example.com.templateprogram.test.view.MarqueeTextView2
+        android:id="@+id/mv3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_50x"
+        android:layout_below="@+id/btn2"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text=""
+        android:textSize="@dimen/deimen_14x"
+        android:visibility="gone"/>
 
 
     <EditText
         android:id="@+id/et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mv"
-        android:layout_marginTop="@dimen/deimen_200x"/>
+        android:layout_below="@+id/mv2"
+        android:layout_marginTop="@dimen/deimen_100x"
+        android:visibility="visible"/>
 
 
 </RelativeLayout>
