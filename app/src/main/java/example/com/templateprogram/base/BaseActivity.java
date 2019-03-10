@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import example.com.templateprogram.test.myclass.PublicPracticalMethod;
+import example.com.templateprogram.utils.ToastUtils;
+
 /**
  * Created by admin on 2017/7/7.
  */
@@ -52,5 +55,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        String name = PublicPracticalMethod.getInstance().getTopActivity(this);
+        if (name.contains("TestMainActivity")) {
+            ToastUtils.showLongToastSafe("这是主界面，不会弹出弹框");
+        } else {
+            PublicPracticalMethod.getInstance().showGlobalDialog(this);
+        }
     }
 }

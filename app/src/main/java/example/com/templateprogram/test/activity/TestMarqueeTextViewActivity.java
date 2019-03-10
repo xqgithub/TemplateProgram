@@ -37,7 +37,7 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
 
     String content1 = "我是&海贼王&路飞，abc要成为%海贼王%的男人，请%祝福%我吧，&哈哈&";
     String content2 = "%露西按%吃&粑粑&吃的真是欢乐，你个狗的继续吃粑粑啊，哈哈";
-    String content3 = "%露西按%";
+    String content3 = "顶焦度计%我要变红&哈哈哈&多看看%大口大口看到";
     String content4 = "官方最新地址:https://ta3.app，旧地址已被封 &查看详情&";
     private List<String> list = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
 
     public void initData() {
         mv.setMarqueeEnable(true);
-        wordProcess(mv, content1);
+        wordProcess(mv, content3);
 //        mv.setText(content1);
 
 //        mv2.setText(content1);
