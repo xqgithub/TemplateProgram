@@ -143,6 +143,10 @@ dependencies {
     //轮播图控件
     compile 'com.github.xqgithub:CustomBanner:1.1.20'
 
+    //butterknife 控件
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
 
 
     implementation project(':SlidingMenulibrary')

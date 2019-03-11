@@ -6,17 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import example.com.templateprogram.test.myclass.PublicPracticalMethod;
-import example.com.templateprogram.utils.ToastUtils;
+import example.com.templateprogram.utils.StringUtils;
 
 /**
  * Created by admin on 2017/7/7.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private Unbinder unbinder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         // 禁止横竖屏切换
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 去掉系统默认的标题栏
@@ -24,6 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 初始化视图之前操作
         onBeforeSetContentLayout();
         setContentView(getLayoutId());
+
+        // 通过注解绑定控件
+        unbinder = ButterKnife.bind(this);
     }
 
     /**
@@ -45,6 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (!StringUtils.isBlank(unbinder)) {
+            unbinder.unbind();
+        }
     }
 
     @Override
@@ -56,10 +68,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         String name = PublicPracticalMethod.getInstance().getTopActivity(this);
-        if (name.contains("TestMainActivity")) {
-            ToastUtils.showLongToastSafe("这是主界面，不会弹出弹框");
-        } else {
-            PublicPracticalMethod.getInstance().showGlobalDialog(this);
-        }
+//        if (name.contains("TestMainActivity")) {
+//            ToastUtils.showLongToastSafe("这是主界面，不会弹出弹框");
+//        } else {
+//            PublicPracticalMethod.getInstance().showGlobalDialog(this);
+//        }
     }
 }

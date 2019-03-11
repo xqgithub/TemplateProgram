@@ -16,6 +16,7 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.test.activity.TestAESCryptActivity;
 import example.com.templateprogram.test.activity.TestAIDLActivity;
 import example.com.templateprogram.test.activity.TestAPIEncryptActivity;
+import example.com.templateprogram.test.activity.TestAlarmManagerActivity;
 import example.com.templateprogram.test.activity.TestAnimationActivity;
 import example.com.templateprogram.test.activity.TestArouseAppActivity;
 import example.com.templateprogram.test.activity.TestBitmapCompress;
@@ -191,6 +192,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestSPEncryptDecryptActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 39) {
                         StaticStateUtils.intentToJump(mContext, TestMarqueeTextViewActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 40) {
+                        StaticStateUtils.intentToJump(mContext, TestAlarmManagerActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });

@@ -160,6 +160,9 @@
         <activity
             android:name=".test.activity.TestMarqueeTextViewActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestAlarmManagerActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
@@ -172,6 +175,8 @@
         <service
             android:name=".test.service.PingAidlService"
             android:process=":gigi"></service>
+
+
         <!--Gilde 缓存配置 -->
         <meta-data
             android:name="example.com.templateprogram.utils.glide.MyGlideMoudle"

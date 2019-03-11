@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -21,6 +22,7 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.adapter.MainRecyclerAdapter;
 import example.com.templateprogram.test.view.DividerItemDecoration1;
+import example.com.templateprogram.utils.ToastUtils;
 
 /**
  * Created by XQ on 2017/11/28.
@@ -153,7 +155,7 @@ public class TestMainActivity extends BaseActivity {
             "TestGreenDaoActivity", "TestEventBusActivityOne", "TestBitmapCompress",
             "TestImageQRCodeActivity", "TestPingActivity", "TestArouseAppActivity",
             "TestAPIEncryptActivity", "TestLoopBannerActivity", "TestSPEncryptDecryptActivity",
-            "TestMarqueeTextViewActivity"
+            "TestMarqueeTextViewActivity", "TestAlarmManagerActivity"
     };
 
 
@@ -172,6 +174,23 @@ public class TestMainActivity extends BaseActivity {
             mDatas.add(tv1[i] + tempnum);
         }
         tempnum++;
+    }
+
+    private long mExitTime;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // 双击退出程序
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                ToastUtils.showLongToastSafe("再按一次退出程序");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+        }
+        return false;
     }
 
 
