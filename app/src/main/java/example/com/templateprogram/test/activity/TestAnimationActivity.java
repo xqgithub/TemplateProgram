@@ -1,5 +1,8 @@
 package example.com.templateprogram.test.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -22,6 +25,7 @@ import example.com.templateprogram.test.view.Roll3DView;
 import example.com.templateprogram.test.view.Rotate3dAnimation;
 import example.com.templateprogram.test.view.RotateAnimation;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.ScreenUtils;
 
 /**
  * Created by beijixiong on 2018/11/19.
@@ -49,11 +53,21 @@ public class TestAnimationActivity extends BaseActivity {
 
     private BitmapDrawable bgDrawable1, bgDrawable2;
 
+    //动画先放大，再缩小到正常
+    private ImageView iv_animation2;
+    private Button btn_zoom;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_test_animation;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = TestAnimationActivity.this;
         iv_animation = findViewById(R.id.iv_animation);
+        iv_animation2 = findViewById(R.id.iv_animation2);
         rl_animation = findViewById(R.id.rl_animation);
         iv_animation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +81,7 @@ public class TestAnimationActivity extends BaseActivity {
         tdView = findViewById(R.id.three_d_view);
         btn_Pre = findViewById(R.id.btn_Pre);
         btn_next = findViewById(R.id.btn_next);
+        btn_zoom = findViewById(R.id.btn_zoom);
 
         bgDrawable1 = (BitmapDrawable) getResources().getDrawable(R.mipmap.shouye1);
         bgDrawable2 = (BitmapDrawable) getResources().getDrawable(R.drawable.beauty2);
@@ -91,6 +106,7 @@ public class TestAnimationActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tdView.toNext();
+
             }
         });
         tdView.setRollDirection(2);
@@ -98,6 +114,14 @@ public class TestAnimationActivity extends BaseActivity {
         tdView.setRollMode(Roll3DView.RollMode.Whole3D);
         tdView.setRotateDegree(90);
 
+        btn_zoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ZoomOutTOZoomIn();
+//                PropertyAnimation();
+                ObjectAnimator();
+            }
+        });
     }
 
     /**
@@ -222,9 +246,104 @@ public class TestAnimationActivity extends BaseActivity {
         rl_animation.startAnimation(rotateAnim);
     }
 
+    /**
+     * 补间动画 ，动画先放大再缩小
+     */
+    private void ZoomOutTOZoomIn() {
+        Animation animation_zoomout = AnimationUtils.loadAnimation(mActivity, R.anim.animation_zoomout);
+        final Animation animation_zoomin = AnimationUtils.loadAnimation(mActivity, R.anim.animation_zoomin);
+        animation_zoomout.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_test_animation;
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iv_animation2.startAnimation(animation_zoomin);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        iv_animation2.startAnimation(animation_zoomout);
     }
+
+    /**
+     * ------------------------ 属性动画 start ------------------------
+     */
+    private void PropertyAnimation() {//通过不断控制 值 的变化，再不断 手动 赋给对象的属性，从而实现动画效果
+        /**
+         * ofInt（）作用有两个
+         * 1. 创建动画实例
+         * 2. 将传入的多个Int参数进行平滑过渡:此处传入0和1,表示将值从0平滑过渡到1
+         * 3. 如果传入了3个Int参数 a,b,c ,则是先从a平滑过渡到b,再从b平滑过渡到C，以此类推
+         * 4. ValueAnimator.ofInt()内置了整型估值器,直接采用默认的.不需要设置，即默认设置了如何从初始值 过渡到 结束值
+         */
+        //步骤1：设置动画属性的初始值 & 结束值
+        ValueAnimator anim = ValueAnimator.ofInt(ScreenUtils.dip2px(mActivity, 250),
+                ScreenUtils.dip2px(mActivity, 300));
+        // 步骤2：设置动画的播放各种属性
+        // 设置动画运行的时长
+        anim.setDuration(500);
+        // 设置动画延迟播放时间
+        anim.setStartDelay(500);
+        // 设置动画重复播放次数 = 重放次数+1
+        anim.setRepeatCount(0);
+        // 设置重复播放动画模式
+        // ValueAnimator.RESTART(默认):正序重放
+        // ValueAnimator.REVERSE:倒序回放
+        anim.setRepeatMode(ValueAnimator.RESTART);
+        // 步骤3：将改变的值手动赋值给对象的属性值：通过动画的更新监听器
+        // 设置 值的更新监听器
+        // 即：值每次改变、变化一次,该方法就会被调用一次
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int currentValue = (Integer) animation.getAnimatedValue();
+                LogUtils.i("currentValue =-= " + currentValue);
+                // 步骤4：将改变后的值赋给对象的属性值，下面会详细说明
+                iv_animation2.getLayoutParams().width = currentValue;
+                iv_animation2.requestLayout();
+            }
+        });
+        anim.start();
+
+        /**
+         * oFloat()的用法和 oFloa() 相似
+         */
+
+        /**
+         * ofObject(),针对的是对象，需要自定义估值器
+         */
+    }
+
+    /**
+     * ValueAnimator 类是先改变值，然后 手动赋值 给对象的属性从而实现动画；是 间接 对对象属性进行操作；
+     * ObjectAnimator 类是先改变值，然后 自动赋值 给对象的属性从而实现动画；是 直接 对对象属性进行操作；
+     */
+    private void ObjectAnimator() {//直接对对象的属性值进行改变操作，从而实现动画效果
+        //X轴缩放，先放大，后缩小
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(iv_animation2, "scaleX", 1f, 1.5f, 1f);
+        animatorX.setRepeatCount(0);
+        animatorX.setRepeatMode(ValueAnimator.RESTART);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(iv_animation2, "scaleY", 1f, 1.5f, 1f);
+        animatorY.setRepeatCount(0);
+        animatorY.setRepeatMode(ValueAnimator.RESTART);
+
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.play(animatorX).with(animatorY);
+        animSet.setDuration(1000);
+        animSet.start();
+    }
+
+
+    /**
+     * ------------------------ 属性动画 end ------------------------
+     */
+
+
 }
