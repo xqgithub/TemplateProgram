@@ -21,7 +21,9 @@ import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.view.MarqueeTextView;
 import example.com.templateprogram.test.view.MarqueeTextView2;
+import example.com.templateprogram.test.view.MarqueeTextView3;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.ScreenUtils;
 import example.com.templateprogram.utils.StringUtils;
 
 /**
@@ -33,7 +35,7 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
 
     private MarqueeTextView mv;
     private MarqueeTextView2 mv2;
-    private MarqueeTextView2 mv3;
+    private MarqueeTextView3 mv3;
 
     String content1 = "我是&海贼王&路飞，abc要成为%海贼王%的男人，请%祝福%我吧，&哈哈&";
     String content2 = "%露西按%吃&粑粑&吃的真是欢乐，你个狗的继续吃粑粑啊，哈哈";
@@ -68,14 +70,22 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
     }
 
     public void initData() {
-        mv.setMarqueeEnable(true);
-        wordProcess(mv, content3);
+//        wordProcess(mv, content1);
 //        mv.setText(content1);
 
 //        mv2.setText(content1);
 //        mv2.setRndDuration(20000);
 //        mv2.startScroll();
 
+        mv3.setViewMargin(ScreenUtils.dip2px(this, 100));
+        for (int i = 0; i < 100; i++) {
+            TextView textView = new TextView(this);
+            mv3.addViewInQueue(textView);
+            wordProcess(textView, content1);
+        }
+        mv3.setScrollSpeed(3);
+        mv3.setScrollDirection(MarqueeTextView3.RIGHT_TO_LEFT);
+        mv3.startScroll();
     }
 
     /**
@@ -193,5 +203,12 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
             count++;
         }
         return count;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mv3.stopScroll();
     }
 }

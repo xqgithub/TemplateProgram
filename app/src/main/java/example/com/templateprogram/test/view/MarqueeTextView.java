@@ -17,7 +17,6 @@ import android.widget.TextView;
 @SuppressLint("AppCompatCustomView")
 public class MarqueeTextView extends TextView {
 
-    private boolean isMarqueeEnable = false;
 
     public MarqueeTextView(Context context) {
         super(context);
@@ -25,46 +24,43 @@ public class MarqueeTextView extends TextView {
 
     public MarqueeTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        setSingleLine();//使用代码设置单行显示
+        setEllipsize(TextUtils.TruncateAt.MARQUEE);//使用代码设置滚动操作
+        setFocusableInTouchMode(true);//使用代码设置触摸获取焦点
+        setMarqueeRepeatLimit(-1);//设置滚动次数 -1代表无限
     }
 
     public MarqueeTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setMarqueeEnable(boolean enable) {
-        if (isMarqueeEnable != enable) {
-            isMarqueeEnable = enable;
-            if (enable) {
-                setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            } else {
-                setEllipsize(TextUtils.TruncateAt.END);
-            }
-            onWindowFocusChanged(enable);
-        }
-    }
 
-    public boolean isMarqueeEnable() {
-        return isMarqueeEnable;
-    }
-
+    // 重写系统的TextView,让其默认获得焦点
     @Override
     public boolean isFocused() {
-        return isMarqueeEnable;
+        return true;
     }
 
-    @Override
-    public boolean isSelected() {
-        return isMarqueeEnable;
-    }
-
+    //焦点切换调用的方法
+    //focused : 焦点是否释放
+    //direction : 焦点移动的方向
+    //previouslyFocusedRect : 焦点从哪个控件过来
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        super.onFocusChanged(isMarqueeEnable, direction, previouslyFocusedRect);
+        //当焦点被抢夺的时候，不能抢夺textview的焦点
+        //如果焦点没有被抢夺，调用系统的方法，帮我们保留焦点
+        //如果焦点被抢夺了，禁止调用系统的方法，禁止系统移除焦点
+        if (focused) {
+            super.onFocusChanged(focused, direction, previouslyFocusedRect);
+        }
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
-        super.onWindowFocusChanged(isMarqueeEnable);
+        if (hasWindowFocus) {
+            super.onWindowFocusChanged(hasWindowFocus);
+        }
     }
+
 
 }

@@ -40,14 +40,10 @@
         android:layout_below="@+id/btn2"
         android:layout_marginTop="@dimen/deimen_15x"
         android:background="@color/crowded_yellow"
-        android:ellipsize="marquee"
-        android:focusable="true"
         android:gravity="center"
-        android:marqueeRepeatLimit="-1"
-        android:singleLine="true"
         android:text=""
-        android:textSize="@dimen/deimen_14x"
-        android:visibility="visible"/>
+        android:textSize="@dimen/deimen_16x"
+        android:visibility="gone"/>
 
     <example.com.templateprogram.test.view.MarqueeTextView2
         android:id="@+id/mv2"
@@ -59,16 +55,17 @@
         android:textSize="@dimen/deimen_14x"
         android:visibility="gone"/>
 
-    <example.com.templateprogram.test.view.MarqueeTextView2
+    <example.com.templateprogram.test.view.MarqueeTextView3
         android:id="@+id/mv3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/deimen_50x"
         android:layout_below="@+id/btn2"
         android:layout_marginTop="@dimen/deimen_15x"
+        android:fillViewport="true"
         android:text=""
         android:textSize="@dimen/deimen_14x"
-        android:visibility="gone"/>
-
+        android:visibility="visible">
+    </example.com.templateprogram.test.view.MarqueeTextView3>
 
     <EditText
         android:id="@+id/et"

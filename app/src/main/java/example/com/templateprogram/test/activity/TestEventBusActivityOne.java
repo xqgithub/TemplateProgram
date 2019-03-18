@@ -57,7 +57,7 @@ public class TestEventBusActivityOne extends BaseActivity {
      * @param event
      */
 
-    @Subscribe(threadMode = ThreadMode.MAIN, priority = 1)
+    @Subscribe(threadMode = ThreadMode.POSTING, priority = 1)
     public void onEventMainThread(MessageEvent event) {
         String msg = "TestEventBusActivityOne收到了消息：" + event.getMessage();
         tv.setText(msg);
