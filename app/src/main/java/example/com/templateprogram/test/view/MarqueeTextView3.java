@@ -9,8 +9,10 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import java.util.List;
+
 import example.com.templateprogram.R;
-import example.com.templateprogram.utils.ScreenUtils;
+import example.com.templateprogram.utils.StringUtils;
 
 
 /**
@@ -28,6 +30,7 @@ public class MarqueeTextView3 extends HorizontalScrollView implements Runnable {
     private int viewMargin = 20;//View间距
     private int viewWidth;//View总宽度
     private int screenWidth;//屏幕宽度
+    private int viewSingleWidth;//单个view的宽度
 
     public static final int LEFT_TO_RIGHT = 1;
     public static final int RIGHT_TO_LEFT = 2;
@@ -53,20 +56,36 @@ public class MarqueeTextView3 extends HorizontalScrollView implements Runnable {
         this.addView(mainLayout);
     }
 
-    public void addViewInQueue(View view) {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(viewMargin, 0, 0, 0);
-        view.setLayoutParams(lp);
-        mainLayout.addView(view);
-        view.measure(0, 0);//测量view
-        viewWidth = viewWidth + view.getMeasuredWidth() + viewMargin;
+    public void addViewInQueue(List<View> views) {
+        if (!StringUtils.isBlank(views) && views.size() > 0) {
+            for (int i = 0; i < views.size(); i++) {
+                View view = views.get(i);
+                if (i == 0) {//第一个view
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lp.setMargins(0, 0, 0, 0);
+                    view.setLayoutParams(lp);
+                    mainLayout.addView(view);
+                    view.measure(0, 0);//测量view
+                    viewSingleWidth = view.getMeasuredWidth();
+                    viewWidth = viewWidth + view.getMeasuredWidth() + viewMargin;
+                } else {
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lp.setMargins(viewMargin, 0, 0, 0);
+                    view.setLayoutParams(lp);
+                    mainLayout.addView(view);
+                    view.measure(0, 0);//测量view
+                    viewWidth = viewWidth + view.getMeasuredWidth() + viewMargin;
+                }
+            }
+        }
     }
 
     //开始滚动
     public void startScroll() {
         removeCallbacks(this);
-        currentX = (scrollDirection == LEFT_TO_RIGHT ? viewWidth : ScreenUtils.dip2px(context, 80));
+        currentX = (scrollDirection == LEFT_TO_RIGHT ? viewWidth : 0);
         post(this);
     }
 
@@ -89,6 +108,21 @@ public class MarqueeTextView3 extends HorizontalScrollView implements Runnable {
     public void setScrollDirection(int scrollDirection) {
         this.scrollDirection = scrollDirection;
     }
+
+    /**
+     * 得到屏幕的宽度
+     */
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    /**
+     * 得到单个view的宽度
+     */
+    public int getViewSingleWidth() {
+        return viewSingleWidth;
+    }
+
 
     @Override
     public void run() {
@@ -122,4 +156,6 @@ public class MarqueeTextView3 extends HorizontalScrollView implements Runnable {
     public boolean onTouchEvent(MotionEvent ev) {
         return false;
     }
+
+
 }

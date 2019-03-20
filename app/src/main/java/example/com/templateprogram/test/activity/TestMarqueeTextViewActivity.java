@@ -37,7 +37,7 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
     private MarqueeTextView2 mv2;
     private MarqueeTextView3 mv3;
 
-    String content1 = "我是&海贼王&路飞，abc要成为%海贼王%的男人，请%祝福%我吧，&哈哈&";
+    String content1 = "我是&海贼王&路飞，abc要成为%海贼王%的男人，请%祝福%我吧，&哈哈&，官方最新地址:https://ta3.app";
     String content2 = "%露西按%吃&粑粑&吃的真是欢乐，你个狗的继续吃粑粑啊，哈哈";
     String content3 = "顶焦度计%我要变红&哈哈哈&多看看%大口大口看到";
     String content4 = "官方最新地址:https://ta3.app，旧地址已被封 &查看详情&";
@@ -76,14 +76,15 @@ public class TestMarqueeTextViewActivity extends BaseActivity {
 //        mv2.setText(content1);
 //        mv2.setRndDuration(20000);
 //        mv2.startScroll();
-
+        List<View> views = new ArrayList<>();
         mv3.setViewMargin(ScreenUtils.dip2px(this, 100));
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 3; i++) {
             TextView textView = new TextView(this);
-            mv3.addViewInQueue(textView);
             wordProcess(textView, content1);
+            views.add(textView);
         }
-        mv3.setScrollSpeed(3);
+        mv3.addViewInQueue(views);
+        mv3.setScrollSpeed(10);
         mv3.setScrollDirection(MarqueeTextView3.RIGHT_TO_LEFT);
         mv3.startScroll();
     }
