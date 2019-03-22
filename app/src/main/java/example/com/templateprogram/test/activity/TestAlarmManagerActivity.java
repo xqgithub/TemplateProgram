@@ -132,7 +132,7 @@ public class TestAlarmManagerActivity extends BaseActivity {
         if (!StringUtils.isBlank(alarmmanager_receiver)) {
             unregisterReceiver(alarmmanager_receiver);
         }
-        if (!StringUtils.isBlank(alarmManager)) {
+        if (!StringUtils.isBlank(alarmManager) && !StringUtils.isBlank(pi)) {
             alarmManager.cancel(pi);
         }
     }

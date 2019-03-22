@@ -1,5 +1,6 @@
 package example.com.templateprogram.test.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -44,7 +45,8 @@ public class TestWebViewJSActivity extends BaseActivity implements View.OnClickL
 //        initWebView();
 //        initWebView2();
 //        initWebView3();
-        initWebView4();
+//        initWebView4();
+        initWebView5();
 
     }
 
@@ -258,10 +260,48 @@ public class TestWebViewJSActivity extends BaseActivity implements View.OnClickL
         });
     }
 
+    /**
+     * 打开指定app应用，坚果vpn
+     */
+    private void initWebView5() {
+        WebSettings webSettings = wv_testwvjs.getSettings();
+        // 设置与Js交互的权限
+        webSettings.setJavaScriptEnabled(true);
+        // 设置允许JS弹窗
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        // 先载入JS代码
+        // 格式规定为:file:///android_asset/文件名.html
+        wv_testwvjs.loadUrl("file:///android_asset/webopenapp.html");
+
+
+        // 由于设置了弹窗检验调用结果,所以需要支持js对话框
+        // webview只是载体，内容的渲染需要使用webviewChromClient类去实现
+        // 通过设置WebChromeClient对象处理JavaScript的对话框
+        //设置响应js 的Alert()函数
+        wv_testwvjs.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+                AlertDialog.Builder b = new AlertDialog.Builder(mActivity);
+                b.setTitle("Alert");
+                b.setMessage(message);
+                b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        result.confirm();
+                    }
+                });
+                b.setCancelable(false);
+                b.create().show();
+                return true;
+            }
+        });
+    }
+
 
     /**
      * handler
      */
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
