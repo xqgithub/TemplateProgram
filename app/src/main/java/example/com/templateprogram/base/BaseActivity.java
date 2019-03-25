@@ -74,4 +74,5 @@ public abstract class BaseActivity extends AppCompatActivity {
 //            PublicPracticalMethod.getInstance().showGlobalDialog(this);
 //        }
     }
+
 }

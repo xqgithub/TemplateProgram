@@ -163,6 +163,9 @@
         <activity
             android:name=".test.activity.TestAlarmManagerActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestDagger2Activity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
