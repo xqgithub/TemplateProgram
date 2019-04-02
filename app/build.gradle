@@ -79,35 +79,28 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //RxBinding
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
 
     //picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     //图片处理
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
     //    compile files('libs/photoview-library-1.2.2.jar')
-
     //    compile 'com.github.chrisbanes:PhotoView:1.2.6'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-
     //Glide
     compile 'com.github.bumptech.glide:glide:3.4.0'
 
     //googleAD
-
     //noinspection GradleCompatible
     compile 'com.google.android.gms:play-services-ads:15.0.0'
     compile 'com.google.firebase:firebase-core:16.0.4'
-
     //添加firebase
-
     //加载gif
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
-
     //约束布局
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
     //Facebook
 
     //    compile('com.facebook.android:facebook-android-sdk:[4,5)') {
@@ -116,40 +109,32 @@ dependencies {
 
     //    }
     compile 'com.facebook.android:facebook-android-sdk:4.28.0'
-
     //Recyclerview-Gallery 滑动放大缩小
     compile 'com.ryan.rv_gallery:rv-gallery:1.1.2'
     compile project(path: ':indexlib')
-
     //粉碎效果
     compile 'com.ifadai:particlesmasher:1.0.1'
-
     //SmartRefreshLayout  刷新控件
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
-
     //切换动画效果
     compile 'com.wuyr:rippleanimation:1.0.0'
-
     //greendao数据库
     compile 'org.greenrobot:greendao-generator:3.2.0'
     compile 'org.greenrobot:greendao:3.2.0'
-
     //    compile 'net.zetetic:android-database-sqlcipher:3.5.9@aar'//开启数据库加密，若要使用数据库加密，需要导入
 
     //compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0' //使用数据库安全升级辅助GreenDaoUpgradleHepler时添加
-
     //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
     //轮播图控件
     compile 'com.github.xqgithub:CustomBanner:1.1.20'
-
     //butterknife 控件
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
     //dagger2 控件
     compile 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
 
     implementation project(':SlidingMenulibrary')
     implementation project(':viewspreadtranslationlibrary')

@@ -2,29 +2,50 @@ package example.com.templateprogram.test.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Button;
+import android.widget.CheckBox;
+
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
 import example.com.templateprogram.R;
 import example.com.templateprogram.base.BaseActivity;
 import example.com.templateprogram.test.bean.RxJavaStudents;
 import example.com.templateprogram.utils.LogUtils;
+import example.com.templateprogram.utils.ToastUtils;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by beijixiong on 2019/3/28.
+ * RxJava
+ * RXBinding
  */
 
 public class TestRXJAVAActivity extends BaseActivity {
 
+
+    @BindView(R.id.btn1)
+    Button btn1;
+    @BindView(R.id.btn2)
+    Button btn2;
+    @BindView(R.id.btn3)
+    Button btn3;
+    @BindView(R.id.checkBox)
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +53,8 @@ public class TestRXJAVAActivity extends BaseActivity {
 //        TestA();
 //        TestB();
 //        TestC();
-        TestD();
+//        TestD();
+        onClickRxBinding();
     }
 
     @Override
@@ -175,4 +197,62 @@ public class TestRXJAVAActivity extends BaseActivity {
             }
         }).subscribe(subscriber);
     }
+
+    /**
+     * RxBinding点击事件
+     */
+    private void onClickRxBinding() {
+        //1.防止连续点击
+        RxView.clicks(btn1)
+                .throttleFirst(2, TimeUnit.SECONDS)   //两秒钟之内只取一个点击事件，防抖操作
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+//                        LogUtils.i("两秒钟之内只取一个点击事件");
+                        ToastUtils.showShortToast("两秒钟之内只取一个点击事件");
+                    }
+                });
+
+
+        //2.监听长按事件
+        RxView.longClicks(btn2)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+//                        LogUtils.i("btn2 =-= 被长按了啊");
+                        ToastUtils.showShortToast("btn2 =-= 被长按了啊");
+                    }
+                });
+
+
+        //3.勾选事件
+        RxCompoundButton.checkedChanges(checkBox)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        btn1.setEnabled(aBoolean);
+//                        ToastUtils.showShortToast("btn1 =-= 状态改变了");
+                    }
+                });
+        //4.点击多次监听
+        CompositeSubscription compositeSubscription = new CompositeSubscription();
+        Observable<Void> clickObservable = RxView.clicks(btn3).share();
+        Subscription s1 = clickObservable.subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                LogUtils.i("btn3 =-= 第一次点击");
+            }
+        });
+        compositeSubscription.add(s1);
+        Subscription s2 = clickObservable.subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                LogUtils.i("btn3 =-= 第二次点击");
+            }
+        });
+        compositeSubscription.add(s2);
+    }
+    /**
+     * Backpressure 其实是一种现象：在数据流从上游生产者向下游消费者传输的过程中，上游生产速度大于下游消费速度，导致下游的 Buffer 溢出，这种现象就叫做 Backpressure 出现
+     */
 }
