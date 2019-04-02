@@ -16,6 +16,7 @@ import example.com.templateprogram.entity.ApiResponse;
 import example.com.templateprogram.http.ApiService;
 import example.com.templateprogram.http.BaseSubscriber;
 import example.com.templateprogram.http.RetrofitServiceManager;
+import example.com.templateprogram.test.myclass.ObservableUtils;
 import example.com.templateprogram.utils.AppUtils;
 import example.com.templateprogram.utils.DeviceUtils;
 import example.com.templateprogram.utils.LogUtils;
@@ -105,16 +106,34 @@ public class TestAPIEncryptActivity extends BaseActivity {
             LogUtils.i(TAG, objects);
         }
         ApiService apiService = RetrofitServiceManager.getInstance().getApiService();
-        apiService.location(
-                baseurl + map.get(Constants.encryptmessage).toString(),
+//        apiService.location(
+//                baseurl + map.get(Constants.encryptmessage).toString(),
+//                map.get(Constants.fi).toString(),
+//                map.get(Constants.p1).toString(),
+//                map.get(Constants.p2).toString(),
+//                map.get(Constants.p3).toString(),
+//                DeviceUtils.getUUID())
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseSubscriber<ApiResponse<LocationResponse>>() {
+//                    @Override
+//                    public void onSuccess(ApiResponse<LocationResponse> locationResponseApiResponse) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(String message, int error_code) {
+//
+//                    }
+//                });
+        apiService.location(baseurl + map.get(Constants.encryptmessage).toString(),
                 map.get(Constants.fi).toString(),
                 map.get(Constants.p1).toString(),
                 map.get(Constants.p2).toString(),
                 map.get(Constants.p3).toString(),
                 DeviceUtils.getUUID())
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(ObservableUtils.getInstance().<ApiResponse<LocationResponse>>applySchedulers())
                 .subscribe(new BaseSubscriber<ApiResponse<LocationResponse>>() {
                     @Override
                     public void onSuccess(ApiResponse<LocationResponse> locationResponseApiResponse) {

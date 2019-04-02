@@ -155,7 +155,8 @@ public class TestMainActivity extends BaseActivity {
             "TestGreenDaoActivity", "TestEventBusActivityOne", "TestBitmapCompress",
             "TestImageQRCodeActivity", "TestPingActivity", "TestArouseAppActivity",
             "TestAPIEncryptActivity", "TestLoopBannerActivity", "TestSPEncryptDecryptActivity",
-            "TestMarqueeTextViewActivity", "TestAlarmManagerActivity", "TestDagger2Activity"
+            "TestMarqueeTextViewActivity", "TestAlarmManagerActivity", "TestDagger2Activity",
+            "TestRXJAVAActivity"
     };
 
 

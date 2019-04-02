@@ -8,7 +8,6 @@ import android.view.Window;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import example.com.templateprogram.test.myclass.PublicPracticalMethod;
 import example.com.templateprogram.utils.StringUtils;
 
 /**
@@ -67,7 +66,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String name = PublicPracticalMethod.getInstance().getTopActivity(this);
+//        String name = PublicPracticalMethod.getInstance().getTopActivity(this);
 //        if (name.contains("TestMainActivity")) {
 //            ToastUtils.showLongToastSafe("这是主界面，不会弹出弹框");
 //        } else {
