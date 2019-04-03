@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+    1.app:layout_constrainedWidth="true"  防止 B 控件添加的左右约束失效
+    2.注意B控件的左右都应该有约束条件
+    3.app:layout_constrainedWidth="true" 会导致渲染变慢，变慢时长可忽略不计
+    -->
+    <Button
+        android:id="@+id/btn_A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/deimen_15x"
+        android:text="A"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BBBBBBBBBBBBBBBBBBBBB"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toRightOf="@+id/btn_A"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_A"/>
+
+    <!--
+    1.app:layout_constraintHorizontal_chainStyle="" //设置链样式
+    2.app:layout_constraintHorizontal_bias="0" // 则左边间距占0 右边间距1
+    3.成为链的条件：一组控件它们通过一个双向的约束关系链接起来。 并且链的属性是由一条链的头结点控制的
+    4.(1)spread + 宽度非0
+      (2)spread + 宽度为0，且可以通过weight控制分配比例
+      (3)spread_inside + 宽度非0
+      (4)packed + 宽度非0+bias
+    -->
+    <Button
+        android:id="@+id/btn_C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_D"
+        app:layout_constraintTop_toBottomOf="@+id/btn_B"/>
+
+    <Button
+        android:id="@+id/btn_D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toRightOf="@id/btn_C"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_B"/>
+    <!--
+    1.layout_constraintWidth_min and layout_constraintHeight_min  //设置最小尺寸
+    2.layout_constraintWidth_max and layout_constraintHeight_max  //设置最大尺寸
+    3.layout_constraintWidth_percent and layout_constraintHeight_percent  //设置相对于父类的百分比
+    -->
+    <Button
+        android:id="@+id/btn_E"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="E"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_C"
+        app:layout_constraintWidth_percent="0.5"/>
+    <!--
+    1.约束之百分比布局
+    2.app:layout_constraintDimensionRatio="H,80:80"
+    3.意思是说约束布局支持子控件设置宽高比，前提条件是至少需要将宽高中的一个设置为0dp。可以预先附加W，或H以逗号隔开
+    4.Guideline 引导线，只是个不可见的组件，可用于提供约束
+    -->
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <Button
+        android:id="@+id/btn_F"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:text="F"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintDimensionRatio="H,80:80"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"/>
+    <!--
+    1.Barrier 直译为障碍、屏障
+    2.在约束布局中，可以使用属性constraint_referenced_ids属性来引用多个带约束的组件，从而将它们看作一个整体，Barrier 的介入可以完成很多其他布局不能完成的功能
+    3.barrierDirection 指定方向，constraint_referenced_ids引用的控件 id（多个id以逗号隔开）
+    -->
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="tv_name,tv_contract"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="姓名："
+        app:layout_constraintBottom_toBottomOf="@+id/et_name"
+        app:layout_constraintTop_toTopOf="@+id/et_name"/>
+
+    <TextView
+        android:id="@+id/tv_contract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="联系方式："
+        app:layout_constraintBottom_toBottomOf="@+id/et_contract"
+        app:layout_constraintTop_toTopOf="@+id/et_contract"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入姓名"
+        app:layout_constraintLeft_toLeftOf="@+id/barrier"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_F"/>
+
+    <EditText
+        android:id="@+id/et_contract"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入联系方式"
+        app:layout_constraintLeft_toLeftOf="@+id/barrier"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"/>
+    <!--
+    1.Group 用于控制多个控件的可见性
+    2.若 android:visibility="gone" 那么tv_name，tv_contract 控件都会隐藏。
+    -->
+    <android.support.constraint.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tv_name,tv_contract"/>
+
+
+</android.support.constraint.ConstraintLayout>
