@@ -9,7 +9,7 @@
         android:layout_width="@dimen/deimen_5x"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/deimen_2x"
+        android:layout_marginRight="@dimen/deimen_4x"
         android:background="@drawable/recyclerview_scrollbar_bg"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -21,6 +21,7 @@
             android:id="@+id/rv_test_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#6b52ae"
             android:fadeScrollbars="false"
             android:overScrollMode="never"
             android:scrollbarThumbVertical="@drawable/recyclerview_scrollbar_columnstrip"
