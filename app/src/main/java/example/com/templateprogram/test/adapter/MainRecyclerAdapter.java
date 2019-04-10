@@ -52,6 +52,7 @@ import example.com.templateprogram.test.activity.TestRippleAnimationActivity;
 import example.com.templateprogram.test.activity.TestSPEncryptDecryptActivity;
 import example.com.templateprogram.test.activity.TestSlidingMenuActivity;
 import example.com.templateprogram.test.activity.TestSlidingMenuActivity2;
+import example.com.templateprogram.test.activity.TestSortingAlgorithmActivity;
 import example.com.templateprogram.test.activity.TestVideoViewActivity;
 import example.com.templateprogram.test.activity.TestViewProliferationActivity;
 import example.com.templateprogram.test.activity.TestWebViewJSActivity;
@@ -203,6 +204,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestRXJAVAActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 43) {
                         StaticStateUtils.intentToJump(mContext, TestConstraintLayoutActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 44) {
+                        StaticStateUtils.intentToJump(mContext, TestSortingAlgorithmActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });

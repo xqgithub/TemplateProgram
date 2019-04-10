@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03"/>
+
+    <Button
+        android:id="@+id/btn_bubblesort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:text="冒泡排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"/>
+
+    <Button
+        android:id="@+id/btn_selctionsort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="选择排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bubblesort"/>
+
+    <Button
+        android:id="@+id/btn_insertionsort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="插入排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_selctionsort"/>
+
+    <Button
+        android:id="@+id/btn_shellsort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="希尔排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_insertionsort"/>
+
+    <Button
+        android:id="@+id/btn_quicksort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="快速排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_shellsort"/>
+
+    <Button
+        android:id="@+id/btn_heapsort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="堆砌排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_quicksort"/>
+
+    <Button
+        android:id="@+id/btn_mergesort"
+        android:layout_width="@dimen/deimen_90x"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/deimen_10x"
+        android:text="合并排序"
+        app:layout_constraintDimensionRatio="H,90:50"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_heapsort"/>
+
+
+</android.support.constraint.ConstraintLayout>
