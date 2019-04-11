@@ -42,12 +42,20 @@ public interface ApiService {
 
     /**
      * 登录接口
+     * 直接加密
      */
     @POST
     Observable<ApiResponse<SigninResponseV2>> signinv4(
             @Url String fileUrl,
             @HeaderMap Map<String, String> headers
     );
+
+    /**
+     * 登录接口
+     * 在拦截器中修改值加密
+     */
+    @POST("/api/client/v4/signin")
+    Observable<ApiResponse<SigninResponseV2>> signinv4_2(@QueryMap Map<String, Object> options);
 
 
 }

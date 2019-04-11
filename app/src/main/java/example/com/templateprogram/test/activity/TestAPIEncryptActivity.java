@@ -78,7 +78,8 @@ public class TestAPIEncryptActivity extends BaseActivity {
                 break;
             case R.id.btn2:
 //                testApi();
-                testApiLogin();
+//                testApiLogin();
+                testApiLogin2();
                 break;
         }
     }
@@ -202,6 +203,42 @@ public class TestAPIEncryptActivity extends BaseActivity {
                     }
                 });
 
+    }
+
+    private void testApiLogin2() {
+        String baseurl = "http://192.168.3.11/";
+        String parturl = "/api/client/v4/signin";
+        Map<String, Object> loginOptions = new HashMap<>();
+        loginOptions.put("device_uuid", DeviceUtils.getUUID());                   // 设备uuid
+        loginOptions.put("device_name", DeviceUtils.getModel());                           // 设备名(如: xxx的iphone)
+        loginOptions.put("device_model", DeviceUtils.getModel());                 // 设备型号(如: iphone6)
+        loginOptions.put("platform", "android");                                  // 设备系统平台(如: ios)
+        loginOptions.put("system_version", Build.VERSION.RELEASE);                // 设备版本(如: 10)
+        loginOptions.put("operator", PhoneUtils.getSimOperatorByMnc());           // 网络运营商(如: unicomm)
+        loginOptions.put("net_env", NetworkUtils.getNetworkType());               // 网络环境(如: 4g、wifi)
+        loginOptions.put("app_version", "nuts");        // 版本名，来自版本渠道信息接口获取到的ID
+        loginOptions.put("app_version_number", AppUtils.getAppVersionName(this)); // App版本(如: 1.0)
+        loginOptions.put("app_channel", "moren");                                // app渠道, 来自版本渠道信息接口获取到的ID
+        loginOptions.put("sdid", StringUtils.isBlank(DeviceUtils.getUniqueDeviceID(mActivity)) ? "" : DeviceUtils.getUniqueDeviceID(mActivity));        //设备共享码
+        loginOptions.put("apiid", "woshilucian");        //Android机型硬件api码
+        ApiService apiService = RetrofitServiceManager.getInstance().getApiService();
+        apiService.signinv4_2(loginOptions)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<ApiResponse<SigninResponseV2>>() {
+                    @Override
+                    public void onSuccess(ApiResponse<SigninResponseV2> signinResponseV2ApiResponse) {
+
+                    }
+
+                    @Override
+                    public void onFailure(String message, int error_code) {
+                        LogUtils.e(TAG,
+                                "message: " + message,
+                                "error_code: " + error_code);
+                    }
+                });
     }
 
 

@@ -21,4 +21,6 @@ public interface Constants {
     String keydefaults = "34dd818daca1310e997bde18";
     //加密的uuid
     String uuid = "uuid";
+    //token
+    String token = "";
 }

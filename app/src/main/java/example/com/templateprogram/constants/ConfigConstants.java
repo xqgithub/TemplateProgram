@@ -8,4 +8,6 @@ package example.com.templateprogram.constants;
 public interface ConfigConstants {
 
     String action_alarm = "action.alarm";
+
+    String base_url = "http://192.168.3.11/";
 }
