@@ -77,9 +77,9 @@ public class TestAPIEncryptActivity extends BaseActivity {
 
                 break;
             case R.id.btn2:
-//                testApi();
+                testApi();
 //                testApiLogin();
-                testApiLogin2();
+//                testApiLogin2();
                 break;
         }
     }
@@ -92,7 +92,7 @@ public class TestAPIEncryptActivity extends BaseActivity {
 //        String baseurl = "https://api.lskdjsmc.com/";
 //        String parturl = "api/client/v1/commons/location";
         String baseurl = "http://192.168.3.11/";
-        String parturl = "api/client/v1/commons/location";
+        String parturl = "/api/client/v1/commons/location";
         Map<String, Object> map = APIEncryptUtils.getInstance().encrypt(parturl, null);
         if (map.size() > 0) {
             Object[] objects = {

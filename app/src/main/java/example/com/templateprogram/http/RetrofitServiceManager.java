@@ -159,6 +159,7 @@ public class RetrofitServiceManager {
             //获取request
             Request request = chain.request();
             return chain.proceed(PublicPracticalMethod.getInstance().OkHttpInterceptorAPIEncrypt(request));
+//            return chain.proceed(request);
         }
     }
 
