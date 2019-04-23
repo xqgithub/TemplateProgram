@@ -111,6 +111,18 @@ public class PublicPracticalMethod {
         String apiurl = oldHttpUrl.url().getPath().replace(ConfigConstants.base_url, "");
         //5.给api加密
         Map<String, Object> encryptMap = APIEncryptUtils.getInstance().encrypt(apiurl, map);
+        if (encryptMap.size() > 0) {
+            Object[] objects = {
+                    "fi:" + encryptMap.get(Constants.fi),
+                    "p1:" + encryptMap.get(Constants.p1),
+                    "p2:" + encryptMap.get(Constants.p2),
+                    "p3:" + encryptMap.get(Constants.p3),
+                    "uuid:" + encryptMap.get(Constants.uuid),
+                    "key:" + encryptMap.get(Constants.key),
+                    "encryptmessage:" + encryptMap.get(Constants.encryptmessage),
+                    "解密后的值:" + APIEncryptUtils.getInstance().decrypt(encryptMap.get(Constants.key).toString(), encryptMap.get(Constants.encryptmessage).toString())};
+            LogUtils.i("OkHttpInterceptorAPIEncrypt", objects);
+        }
         //6.获取heads，修改heads
         Headers headers = request.headers();
         Headers newHeader = headers.newBuilder()

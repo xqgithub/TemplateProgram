@@ -44,23 +44,20 @@ public class APIEncryptUtils {
         try {
             Random random = new Random();
             //key的类型,用来表示是第几套公式
-            fi = random.nextInt(3) + 1;
+            fi = 2;
+//            fi = random.nextInt(3) + 1;
             if (fi == 1) {//公式1，这个值是写死的，后台定义
                 key = Constants.keydefaults;
             } else if (fi == 2) {//公式2,key=mod(p1^3/p2^3)-p1/2
+//                p1 = 777;
+//                p2 = 469;
                 p1 = random.nextInt(1000) + 1;
                 p2 = random.nextInt(1000) + 1;
-                int p1x3 = (int) Math.pow(p1, 3);
-                int p2x3 = (int) Math.pow(p2, 3);
-                int result = (int) Math.floor((p1x3 / p2x3) - (p1 / 2.0));
+                double a = Math.pow(p1, 3) / Math.pow(p2, 3);
+                double b = p1 / 2.0;
+                double c = a - b;
+                int result = (int) Math.floor(c);
                 key = String.valueOf(result);
-//                p1 = 135;
-//                p2 = 606;
-//                double a = Math.pow(p1, 3) / Math.pow(p2, 3);
-//                double b = p1 / 2.0;
-//                double c = a - b;
-//                int result = (int) Math.floor(c);
-//                key = String.valueOf(result);
             } else if (fi == 3) {//公式3，key=p1+p2+p3^2
                 p1 = random.nextInt(1000) + 1;
                 p2 = random.nextInt(1000) + 1;
@@ -99,7 +96,7 @@ public class APIEncryptUtils {
                     stringbuffer.append(entry.getKey() + "=" + entry.getValue() + "&");
                 }
                 String result = stringbuffer.toString();
-                result = result.substring(0, stringbuffer.toString().lastIndexOf("&") - 1);
+                result = result.substring(0, stringbuffer.toString().lastIndexOf("&"));
                 encryptmessage = apiurl + result;
             } else {
                 encryptmessage = apiurl;

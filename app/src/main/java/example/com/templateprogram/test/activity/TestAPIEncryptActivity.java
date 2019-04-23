@@ -77,9 +77,9 @@ public class TestAPIEncryptActivity extends BaseActivity {
 
                 break;
             case R.id.btn2:
-                testApi();
+//                testApi();
 //                testApiLogin();
-//                testApiLogin2();
+                testApiLogin2();
                 break;
         }
     }
@@ -91,7 +91,8 @@ public class TestAPIEncryptActivity extends BaseActivity {
     public void testApi() {
 //        String baseurl = "https://api.lskdjsmc.com/";
 //        String parturl = "api/client/v1/commons/location";
-        String baseurl = "http://192.168.3.11/";
+//        String baseurl = "http://192.168.3.11/";
+        String baseurl = "http://192.168.3.11:3000/";
         String parturl = "/api/client/v1/commons/location";
         Map<String, Object> map = APIEncryptUtils.getInstance().encrypt(parturl, null);
         if (map.size() > 0) {
@@ -149,7 +150,8 @@ public class TestAPIEncryptActivity extends BaseActivity {
     }
 
     public void testApiLogin() {
-        String baseurl = "http://192.168.3.11/";
+//        String baseurl = "http://192.168.3.11/";
+        String baseurl = "http://192.168.3.11:3000/";
         String parturl = "/api/client/v4/signin";
         Map<String, Object> loginOptions = new HashMap<>();
         loginOptions.put("device_uuid", DeviceUtils.getUUID());                   // 设备uuid
@@ -206,7 +208,7 @@ public class TestAPIEncryptActivity extends BaseActivity {
     }
 
     private void testApiLogin2() {
-        String baseurl = "http://192.168.3.11/";
+        String baseurl = "http://192.168.3.11:3000/";
         String parturl = "/api/client/v4/signin";
         Map<String, Object> loginOptions = new HashMap<>();
         loginOptions.put("device_uuid", DeviceUtils.getUUID());                   // 设备uuid
