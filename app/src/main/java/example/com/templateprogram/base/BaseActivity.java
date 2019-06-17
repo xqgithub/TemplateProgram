@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        // 禁止横竖屏切换,测试下，哈哈
+        // 禁止横竖屏切换
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 去掉系统默认的标题栏
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
