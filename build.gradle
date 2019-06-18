@@ -8,9 +8,9 @@ buildscript {
     }
     dependencies {
 //        classpath 'com.android.tools.build:gradle:2.1.2'
-//        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.google.gms:google-services:4.0.1' // google-services plugin
         classpath 'com.android.tools.build:gradle:3.0.1'
+//        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.google.gms:google-services:4.0.1' // google-services plugin
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
     }
 }
