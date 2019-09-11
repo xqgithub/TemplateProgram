@@ -30,9 +30,10 @@ public class ThreadPoolUtils {
         FixedThread,
         CachedThread,
         SingleThread,
+        ScheduledThread
     }
 
-    private ExecutorService          exec;
+    private ExecutorService exec;
     private ScheduledExecutorService scheduleExec;
 
     /**
@@ -42,9 +43,7 @@ public class ThreadPoolUtils {
      * @param corePoolSize 只对Fixed和Scheduled线程池起效
      */
     public ThreadPoolUtils(Type type, int corePoolSize) {
-        // 构造有定时功能的线程池
-        // ThreadPoolExecutor(corePoolSize, Integer.MAX_VALUE, 10L, TimeUnit.MILLISECONDS, new BlockingQueue<Runnable>)
-        scheduleExec = Executors.newScheduledThreadPool(corePoolSize);
+
         switch (type) {
             case FixedThread:
                 // 构造一个固定线程数目的线程池
@@ -61,7 +60,10 @@ public class ThreadPoolUtils {
                 // ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
                 exec = Executors.newCachedThreadPool();
                 break;
-            default:
+            case ScheduledThread:
+                // 构造有定时功能的线程池
+                // ThreadPoolExecutor(corePoolSize, Integer.MAX_VALUE, 10L, TimeUnit.MILLISECONDS, new BlockingQueue<Runnable>)
+                scheduleExec = Executors.newScheduledThreadPool(corePoolSize);
                 exec = scheduleExec;
                 break;
         }

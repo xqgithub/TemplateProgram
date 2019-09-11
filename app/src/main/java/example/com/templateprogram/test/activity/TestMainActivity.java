@@ -156,7 +156,8 @@ public class TestMainActivity extends BaseActivity {
             "TestImageQRCodeActivity", "TestPingActivity", "TestArouseAppActivity",
             "TestAPIEncryptActivity", "TestLoopBannerActivity", "TestSPEncryptDecryptActivity",
             "TestMarqueeTextViewActivity", "TestAlarmManagerActivity", "TestDagger2Activity",
-            "TestRXJAVAActivity", "TestConstraintLayoutActivity", "TestSortingAlgorithmActivity"
+            "TestRXJAVAActivity", "TestConstraintLayoutActivity", "TestSortingAlgorithmActivity",
+            "TestThreadPoolActivity"
     };
 
 

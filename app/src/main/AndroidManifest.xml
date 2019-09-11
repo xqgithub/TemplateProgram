@@ -175,6 +175,9 @@
         <activity
             android:name=".test.activity.TestSortingAlgorithmActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestThreadPoolActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>

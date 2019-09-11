@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_fixedthread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text="FixedThread(线程数量固定的线程池)"
+        android:textAllCaps="false"
+        android:textSize="@dimen/deimen_13x"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_singlethread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text="SingleThread(只有一个核心线程)"
+        android:textAllCaps="false"
+        android:textSize="@dimen/deimen_13x"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fixedthread"/>
+
+    <Button
+        android:id="@+id/btn_ScheduledThread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text="ScheduledThread(固定的核心线程，且有数量无限多的非核心线程)"
+        android:textAllCaps="false"
+        android:textSize="@dimen/deimen_13x"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_singlethread"/>
+
+    <Button
+        android:id="@+id/btn_cachedthread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/deimen_15x"
+        android:text="CachedThread(数量无限多的线程池)"
+        android:textAllCaps="false"
+        android:textSize="@dimen/deimen_13x"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ScheduledThread"/>
+
+
+</android.support.constraint.ConstraintLayout>
