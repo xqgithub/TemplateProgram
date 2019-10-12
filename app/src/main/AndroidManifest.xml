@@ -178,6 +178,15 @@
         <activity
             android:name=".test.activity.TestThreadPoolActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestBottomLayoutOneActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestBottomLayoutTwoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestBottomLayoutThreeActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>
