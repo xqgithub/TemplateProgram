@@ -73,6 +73,8 @@ public class TestMeituanSelectCityActivity extends BaseActivity {
         mSourceDatas = new ArrayList<>();
         mHeaderDatas = new ArrayList<>();
 
+        List<String> recentCitys = new ArrayList<>();
+        mHeaderDatas.add(new MeituanHeaderBean(recentCitys, "最近访问城市", "近"));
         List<String> hotCitys = new ArrayList<>();
         mHeaderDatas.add(new MeituanHeaderBean(hotCitys, "热门城市", "热"));
         mSourceDatas.addAll(mHeaderDatas);
@@ -106,7 +108,8 @@ public class TestMeituanSelectCityActivity extends BaseActivity {
                 }
             }
         };
-        mHeaderAdapter.setHeaderView(0, R.layout.meituan_item_header, mHeaderDatas.get(0));
+        mHeaderAdapter.setHeaderView(1, R.layout.meituan_item_header, mHeaderDatas.get(0));
+        mHeaderAdapter.setHeaderView(2, R.layout.meituan_item_header, mHeaderDatas.get(1));
 
         mRv.setAdapter(mHeaderAdapter);
         mRv.addItemDecoration(mDecoration = new SuspensionDecoration(this, mSourceDatas)
@@ -174,20 +177,20 @@ public class TestMeituanSelectCityActivity extends BaseActivity {
 //                header1.getCityList().clear();
 //                header1.getCityList().add("上海");
 
-//                MeituanHeaderBean header2 = mHeaderDatas.get(1);
-//                List<String> recentCitys = new ArrayList<>();
-//                recentCitys.add("日本");
-//                recentCitys.add("北京");
-//                header2.setCityList(recentCitys);
+                MeituanHeaderBean header2 = mHeaderDatas.get(0);
+                List<String> recentCitys = new ArrayList<>();
+                recentCitys.add("日本");
+                recentCitys.add("北京");
+                header2.setCityList(recentCitys);
 
-                MeituanHeaderBean header3 = mHeaderDatas.get(0);
+                MeituanHeaderBean header3 = mHeaderDatas.get(1);
                 List<String> hotCitys = new ArrayList<>();
                 hotCitys.add("上海");
                 hotCitys.add("北京");
                 hotCitys.add("杭州");
                 hotCitys.add("广州");
                 header3.setCityList(hotCitys);
-                mHeaderAdapter.notifyItemRangeChanged(0, 1);
+                mHeaderAdapter.notifyItemRangeChanged(0, 2);
             }
         }, 2000);
     }
