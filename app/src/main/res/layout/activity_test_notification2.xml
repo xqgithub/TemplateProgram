@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_28x"
+        android:gravity="center"
+        android:text="1.清除所有的Notification通知"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_28x"
+        android:layout_marginTop="@dimen/deimen_8x"
+        android:gravity="center"
+        android:text="2.在Activity中发送通知1，最简单的通知"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintTop_toBottomOf="@+id/tv1"/>
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_28x"
+        android:layout_marginTop="@dimen/deimen_8x"
+        android:gravity="center"
+        android:text="3.在Activity中发送通知2，添加action"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintTop_toBottomOf="@+id/tv2"/>
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_28x"
+        android:layout_marginTop="@dimen/deimen_8x"
+        android:gravity="center"
+        android:text="4.在Activity中发送通知3，设置通知栏左右滑动不删除"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintTop_toBottomOf="@+id/tv3"/>
+
+
+</android.support.constraint.ConstraintLayout>
