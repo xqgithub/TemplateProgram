@@ -32,6 +32,8 @@ public class TestNotificationActivity2 extends BaseActivity implements View.OnCl
     private TextView tv3;
     //左右滑动不删除
     private TextView tv4;
+    //自定义通知
+    private TextView tv5;
 
 
     @Override
@@ -55,6 +57,7 @@ public class TestNotificationActivity2 extends BaseActivity implements View.OnCl
         tv2 = findViewById(R.id.tv2);
         tv3 = findViewById(R.id.tv3);
         tv4 = findViewById(R.id.tv4);
+        tv5 = findViewById(R.id.tv5);
     }
 
     private void initListener() {
@@ -62,6 +65,7 @@ public class TestNotificationActivity2 extends BaseActivity implements View.OnCl
         tv2.setOnClickListener(this);
         tv3.setOnClickListener(this);
         tv4.setOnClickListener(this);
+        tv5.setOnClickListener(this);
     }
 
     private void initNotificationManager() {
@@ -89,6 +93,9 @@ public class TestNotificationActivity2 extends BaseActivity implements View.OnCl
                 break;
             case R.id.tv4:
                 sendNotification3();
+                break;
+            case R.id.tv5:
+                sendNotification4();
                 break;
         }
     }
@@ -187,6 +194,14 @@ public class TestNotificationActivity2 extends BaseActivity implements View.OnCl
         intent.putExtra("what", what);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, what, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;
+    }
+
+
+    private void sendNotification4() {
+        NotificationUtils notificationUtils = new NotificationUtils(this);
+        notificationUtils.setContent(getRemoteViews());
+        Notification notification = notificationUtils.getNotification("这个是标题4", "这个是内容4", R.mipmap.ic_launcher);
+        notificationUtils.getManager().notify(4, notification);
     }
 
 

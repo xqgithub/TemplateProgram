@@ -44,5 +44,15 @@
         android:textSize="@dimen/deimen_14x"
         app:layout_constraintTop_toBottomOf="@+id/tv3"/>
 
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/deimen_28x"
+        android:layout_marginTop="@dimen/deimen_8x"
+        android:gravity="center"
+        android:text="5.在Activity中发送自定义布局通知"
+        android:textSize="@dimen/deimen_14x"
+        app:layout_constraintTop_toBottomOf="@+id/tv4"/>
+
 
 </android.support.constraint.ConstraintLayout>
