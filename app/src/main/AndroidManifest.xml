@@ -196,6 +196,9 @@
         <activity
             android:name=".test.activity.TestNotificationActivity3"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.activity.TestInstallCertificateActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".test.service.MyServiceUnBind"></service>
         <service android:name=".test.service.MyServiceBind"></service>

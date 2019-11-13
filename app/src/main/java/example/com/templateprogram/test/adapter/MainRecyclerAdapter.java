@@ -39,6 +39,7 @@ import example.com.templateprogram.test.activity.TestGoogleNativeAdsAdvancedActi
 import example.com.templateprogram.test.activity.TestGoogleRewardedVideoActivity;
 import example.com.templateprogram.test.activity.TestGreenDaoActivity;
 import example.com.templateprogram.test.activity.TestImageQRCodeActivity;
+import example.com.templateprogram.test.activity.TestInstallCertificateActivity;
 import example.com.templateprogram.test.activity.TestJsonResolve;
 import example.com.templateprogram.test.activity.TestLoopBannerActivity;
 import example.com.templateprogram.test.activity.TestMarqueeTextViewActivity;
@@ -218,6 +219,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                         StaticStateUtils.intentToJump(mContext, TestMeituanSelectCityActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     } else if (position == 48) {
                         StaticStateUtils.intentToJump(mContext, TestNotificationActivity2.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    } else if (position == 49) {
+                        StaticStateUtils.intentToJump(mContext, TestInstallCertificateActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
                 }
             });
