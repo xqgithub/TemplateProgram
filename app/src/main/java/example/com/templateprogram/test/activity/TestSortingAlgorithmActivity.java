@@ -85,7 +85,7 @@ public class TestSortingAlgorithmActivity extends BaseActivity {
      * 两个数比较大小，较大的数下沉，较小的数冒起来
      */
     private void getBubbleSort() {
-        int arr[] = {5, 6, 55, 66, 77, 8, 9, 0};
+        int arr[] = {5, 6, 55, 66, 77, 8, 9, 1};
         int length = arr.length;
         int temp;//临时变量
         boolean flag;//是否交换的标志
